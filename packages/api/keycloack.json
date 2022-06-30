@@ -1,0 +1,8 @@
+{
+    "realm": "kedo-team",
+    "auth-server-url": "http://localhost:8080/",
+    "ssl-required": "external",
+    "resource": "kedo-api-proxy",
+    "public-client": true,
+    "confidential-port": 0
+}

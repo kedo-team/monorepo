@@ -1,0 +1,18 @@
+{
+  "params": {
+    "include": ["ssr"],
+    "skipTrim": false,
+    "icon": "../../common/logo.png",
+    "padding": [
+      0,
+      0
+    ]
+  },
+  "assets": [{
+      "generator": "png",
+      "name": "logo.png",
+      "folder": "public",
+      "sizes": [128]
+    }
+  ]
+}

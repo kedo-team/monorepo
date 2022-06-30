@@ -1,0 +1,84 @@
+version: '3.8'
+services:
+    db:
+        container_name: kt_db
+        image: kt_db
+        restart: always
+        build:
+            context: ./db
+        environment:
+            POSTGRES_USER: ${KEDO_DB_ROOT_USER_NAME}
+            POSTGRES_PASSWORD: ${KEDO_DB_ROOT_USER_PASSWORD}
+            POSTGRES_DB: ${KEDO_DB_NAME}
+            # We need to be shure where is db files located in the container to attach docker volume on it.
+            # So, the data will be persisted between runs.
+            PGDATA: "/var/lib/postgresql/data/pgdata" 
+        ports:
+            - "5432:${KEDO_DB_PORT_EXPOSE}"
+        networks:
+            - kt_network
+        volumes:
+            # - "./src/db_schema.sql:/docker-entrypoint-initdb.d"
+            - "db_data:/var/lib/postgresql/data/pgdata"
+
+    pgadmin:
+        container_name: kt_pgadmin
+        image: dpage/pgadmin4
+        restart: always
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@admin.com
+            PGADMIN_DEFAULT_PASSWORD: root
+            PGADMIN_LISTEN_PORT: 5050
+        networks:
+            - kt_network
+        ports:
+            - 5050:5050
+        depends_on:
+            - db
+        volumes:
+            - "pgadmin_data:/var/lib/pgadmin"
+    # nodered:
+    #     container_name: kt_nodered
+    #     image: nodered/node-red
+    #     networks:
+    #         - kt_network
+    #     ports:
+    #         - 1880:1880
+    #     volumes:
+    #         - "node_red_data:/data"
+    #     depends_on:
+    #         - graphql
+    keycloak:
+        container_name: kt_keycloak
+        image: quay.io/keycloak/keycloak-x
+        networks:
+            - kt_network
+        ports:
+            - "8080:8080"
+        environment:
+            DB_VENDOR: POSTGRES
+            DB_ADDR: db
+            DB_DATABASE: keycloak
+            DB_SCHEMA: public
+            DB_USER: ${KEDO_DB_ROOT_USER_NAME}
+            DB_PASSWORD: ${KEDO_DB_ROOT_USER_PASSWORD}
+            KEYCLOAK_ADMIN: admin
+            KEYCLOAK_ADMIN_PASSWORD: admin      
+            KC_DB: postgres
+            KC_DB_URL: jdbc:postgresql://db:5432/keycloak
+            KC_DB_USERNAME: ${KEDO_DB_ROOT_USER_NAME}
+            KC_DB_PASSWORD: ${KEDO_DB_ROOT_USER_PASSWORD}
+        volumes:
+            - "keycloak_data:/opt/jboss/keycloak/standalone/data/"
+        depends_on:
+          - db
+        # entrypoint: ["/opt/keycloak/bin/kc.sh", "start-dev"]    
+        command: start-dev
+volumes:
+    db_data:
+    pgadmin_data:
+    # node_red_data:
+    keycloak_data:
+
+networks:
+    kt_network:

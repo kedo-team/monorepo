@@ -1,0 +1,19 @@
+#import "graphql/user.fragment.graphql"
+
+query RequestsDone {
+  requestsList(condition: {isDone: true}) {
+    id
+    createdAt
+    requestTypeName
+    payload
+    status
+    tasksList {
+      id
+      status
+      order
+      assignedToUser {
+        ...UserFragment
+      }
+    }
+  }
+}

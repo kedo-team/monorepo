@@ -1,0 +1,19 @@
+{
+  "name": "kedo-monorepo",
+  "packageManager": "yarn@3.2.1",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "jstransformer-markdown-it": "^2.1.0",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "app": "yarn workspace @kedo-team/app",
+    "api": "yarn workspace @kedo-team/api",
+    "data": "yarn workspace @kedo-team/data-model",
+    "lp": "yarn workspace @kedo-team/qlp",
+    "icon:build": "yarn lp icongenie generate --profile icongenie-cfg.json"
+  }
+}

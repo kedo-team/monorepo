@@ -1,0 +1,19 @@
+// app global css in SCSS form
+/////////////////////////////////////////////
+// text color on header
+header.q-header {
+    color: $kedo-dark-background-text;
+}
+
+// style of group header at the left menu
+.kedo-menu-expansion-header {
+  background-color: $kedo-dark-background-text;
+  color: $primary;
+  font-size: large;
+
+}
+
+// It's for timeline. Becasuse I don't know how to prevent purging "unused" css.
+.q-timeline__entry--icon .q-timeline__subtitle {
+  padding: 0px;
+}

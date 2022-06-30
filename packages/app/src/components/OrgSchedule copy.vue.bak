@@ -1,0 +1,156 @@
+<template lang='pug'>
+.row.flex-center.q-pb-md
+  .col.text-center
+    ToggleFilters(:options='filterOptions'
+                  @changed='filterChanged')
+
+//- .row 
+  //- .col-auto.kt-userlist
+  //-   .column.flex-center
+  //-     .col.kt-username-header
+  //-     .col.kt-username.column.flex-center(v-for='vac in result')
+  //-       KT-UserAvatar(:data='vac.user')
+.kt-container
+  .kt-userlist
+    .kt-username.column.flex-center(v-for='vac in result')
+      KT-UserAvatar(:data='vac.user')
+  .kt-schedule
+    svg#kt-org-schedule-container
+</template>
+
+<style lang='sass'>
+///////////////////////////////////////////////
+// positioning user list on top of the schedule
+$kt-header-height: 60px
+$kt-row-height: 58px
+.kt-container
+  position: relative
+  
+  .kt-userlist
+    position: absolute
+    top: $kt-header-height
+    z-index: 2
+
+.kt-username
+  min-height: $kt-row-height
+  border: 1px
+///////////////////////////////////////////////
+// custom style on difirent status
+.kt-vacation-approved .bar,
+// diable custom fill on hover
+.gantt .bar-wrapper:hover.kt-vacation-approved .bar,
+// disable custom fill on selected bar
+.gantt .bar-wrapper.kt-vacation-approved.active .bar
+  fill: green
+
+// today column higlighter
+#kt-org-schedule-container .today-highlight
+  fill: #8dd386
+
+
+// disable handles to move task dates
+.gantt .bar-wrapper:hover .handle
+  visibility: hidden
+// disable refill on hover
+
+
+.kt-bold
+  font: bold 40px serif
+
+</style>
+
+<script setup lang='ts'>
+import { onMounted } from 'vue'
+import Gantt from 'frappe-gantt'
+import type {VIEW_MODE, GanttTask } from 'frappe-gantt'
+import ToggleFilters from 'src/components/global/ToggleFilters.vue'
+import type { IFilterOption } from 'src/view-model'
+import { getUnitsVacation } from 'src/data-model/vacation-provider'
+import type { IVacationData } from '@kedo-team/data-model'
+
+const {result, loading, error} = getUnitsVacation()
+let tasks: GanttTask[] = transformVacationToTask(result.value)
+
+const ganttOptions = {
+  // header_height: 50,
+  // column_width: 30,
+  // step: 24,
+  // view_modes: [...Object.values(VIEW_MODE)],
+  bar_height: 40,
+  // bar_corner_radius: 3,
+  // arrow_curve: 5,
+  // padding: 18,
+  view_mode: 'Day',
+  // date_format: 'YYYY-MM-DD',
+  // popup_trigger: 'click',
+  // custom_popup_html: null,
+  language: 'ru',
+}
+
+let gantt: Gantt | null = null
+
+onMounted(()=>{
+  // docs: https://frappe.io/gantt
+  gantt = new Gantt('#kt-org-schedule-container', tasks, ganttOptions); 
+  console.log(gantt)
+  denyMove()
+})
+
+function updateGantt(tasks: GanttTask[]): void {
+  if (!gantt) return
+  gantt.refresh(tasks)
+  denyMove()
+}
+
+// This library lacks of feature to disable task moving. 
+// To handle this we need to attach to children event catch event and disable it propagation.
+function denyMove() {
+  if (!gantt) return
+  const barArr: NodeList = gantt.$svg.querySelectorAll('.bar-group')
+  barArr.forEach(el => {
+    el.addEventListener('mousedown', e => e.stopPropagation())
+  })
+}
+
+const filterOptions: IFilterOption[] = [
+  {
+    label: 'День',
+    value: 'Day',
+    default: true
+  },
+  {
+    label: 'Неделя',
+    value: 'Week'
+  },
+  {
+    label: 'Месяц',
+    value: 'Month'
+  },
+]
+
+function filterChanged(val: string) {
+  if (gantt !== null) {
+    gantt.change_view_mode(val as VIEW_MODE)
+  }
+}
+
+// transforms kedo-team vacation object to gantt tsk
+function transformVacationToTask(data: IVacationData[]): GanttTask[] {
+  const retValue = data.map( (el, index) => {
+    const task: GanttTask = {
+      id: '1',
+      name: formatVacationTitle(el),
+      custom_class: el.status === "APPROVED"?'kt-vacation-approved':'kt-vacation-in_progress',
+      start: el.payload.dateFrom,
+      end: el.payload.dateTo
+    }
+    return task
+  })
+  return retValue
+}
+
+function formatVacationTitle(el: IVacationData): string {
+  return `${el.status === 'APPROVED'?'✅ ':''}Отпуск: ${el.payload.dateFrom} - ${el.payload.dateTo}` 
+}
+
+</script>

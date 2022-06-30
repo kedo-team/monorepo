@@ -1,0 +1,19 @@
+#import "graphql/user.fragment.graphql"
+
+query RequestsInPorgress {
+  requestsList(condition: {status: "IN_PROGRESS"}) {
+    id
+    createdAt
+    requestTypeName
+    payload
+    status
+    tasksList {
+      id
+      status
+      order
+      assignedToUser {
+        ...UserFragment
+      }
+    }
+  }
+}

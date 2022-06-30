@@ -1,0 +1,19 @@
+#import "graphql/user.fragment.graphql"
+
+query RequestAll {
+  requestsList {
+    id
+    createdAt
+    requestTypeName
+    payload
+    status
+    tasksList {
+      id
+      status
+      order
+      assignedToUser {
+        ...UserFragment
+      }
+    }
+  }
+}

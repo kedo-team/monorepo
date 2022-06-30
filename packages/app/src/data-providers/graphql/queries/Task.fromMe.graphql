@@ -1,0 +1,19 @@
+#import "/src/data-providers/graphql/user.fragment.graphql"
+query FromMeTasksList($userId: UUID!) {
+  tasksList(condition: {authorUserId: $userId}) {
+    id
+    createdAt
+    status
+    assignedToUser {
+      ...UserFragment
+    }
+    authorUser {
+      ...UserFragment
+    }
+    request {
+      id
+      requestTypeName
+      payload
+    }
+  }
+}

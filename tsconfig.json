@@ -1,0 +1,7 @@
+{
+  "references": [
+    { "path": "./packages/app" },
+    { "path": "./packages/api" },
+    { "path": "./packages/data-model" }
+  ]
+}
