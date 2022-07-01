@@ -37,11 +37,13 @@ QCalendarScheduler(:view='viewModel'
 <script setup lang='ts'>
 import { ref } from 'vue'
 import { date } from 'quasar'
+import * as dateUtils from 'src/utils/date'
 import ToggleFilters from 'src/components/global/ToggleFilter.vue'
 import { QCalendarScheduler, today } from '@quasar/quasar-ui-qcalendar/'
 import type { IFilterOption } from 'src/view-model'
 import cfg from 'src/config'
 import type { IVacationData } from '@kedo-team/data-model'
+
 
 const {result, loading, error} = cfg.providers.unitVacation.getUnitsVacation()
 
@@ -81,9 +83,9 @@ function getEvents (scope: any): IVacationData[] {
 }
 
 function checkDateRange(target: string, startRange: string, endRange: string): boolean {
-  const targetDate = tryParseDate(target) 
-  const startDate = tryParseDate(startRange)
-  const endDate   = tryParseDate(endRange)
+  const targetDate = dateUtils.tryParseDate(target)  
+  const startDate =  dateUtils.tryParseDate(startRange)     
+  const endDate   =  dateUtils.tryParseDate(endRange)
 
   const opts = {
     inclusiveFrom: true,
@@ -93,18 +95,12 @@ function checkDateRange(target: string, startRange: string, endRange: string): b
   return date.isBetweenDates(targetDate, startDate, endDate, opts) 
 }
 
-function tryParseDate(strVal: string): Date {
-  const date = new Date(Date.parse(strVal))
-  if (!date) throw new Error(`Cannot parse date: ${date}`)
-  return date
-}
-
 function getEventLeft(scope: any, event: IVacationData): string {
   // event.dow = Это насколько от левой даты начинается отпуск
 
   // 1 вычисляем с какого индекса стартовать отрисовку (0 - первый)
-  const eventFromDate = tryParseDate(event.payload.dateFrom)
-  const scheduleFromDate = tryParseDate(scope.days[0].date)
+  const eventFromDate = dateUtils.tryParseDate(event.payload.dateFrom)
+  const scheduleFromDate = dateUtils.tryParseDate(scope.days[0].date)
   // https://quasar.dev/quasar-utils/date-utils#difference
   const difference = date.getDateDiff(eventFromDate, scheduleFromDate, 'days')
   const left = difference < 0 ? 0 : difference *

@@ -1,124 +1,177 @@
 <template lang="pug">
-OrgSchedule
 
-//- q-splitter(v-model='splitterModel'
-//-           )
 
-//- q-splitter(v-model='splitterModel')
-//-   template(#before)
-//-     .column.q-pa-md.q-gutter-y-md
-//-       .row
-//-         q-radio(label="Ежегодный"
-//-                 v-model='checkboxModel'              
-//-                 unchecked-icon="panorama_fish_eye"
-//-                 size='xl'
-//-                 val="true")
-//-         q-radio(label="За свой счет"
-//-                 v-model='checkboxModel'              
-//-                 unchecked-icon="panorama_fish_eye"
-//-                 size='xl'
-//-                 val="false")
-//-       q-date(v-model="calendarModel"
-//-             :locale='datei18n'
-//-             today-btn
-//-             first-day-of-week="1"
-//-             range)
-//-   template(#after)
-//-     .column.q-pa-md.q-gutter-y-md
-//-       .text-h6 Доступно на начало отпуска: {{ 18 }} дней
-//-       q-markup-table
-//-         thead: tr: th(colspan='2') 
-//-               .text-h4 Параметры заявки на отпуск:
-//-         tbody
-//-           tr
-//-             td Тип:
-//-             td Отпуск за свой счет
-//-           tr
-//-             td Дата начала:
-//-             td {{ calendarModel.from }}
-//-           tr
-//-             td Дата окончания:
-//-             td {{ calendarModel.to }}
-//-           tr
-//-             td Продолжительность:
-//-             td {{ vacationDuration }}
-//-           tr
-//-             td Согласующий руководитель:
-//-             td: q-chip
-//-               q-avatar: img(src='https://cdn.quasar.dev/img/avatar5.jpg')
-//-               | Толкачев Антон
-//-       .row.justify-start
-//-         q-btn(color="purple"
-//-               @click='confirmDialog=true') Отправить заявку
+q-form(@submit="submit")
+  .column.justify-center
+    .col.q-pb-md
+      q-card: q-card-section
+        OrgSchedule
+    
+    .row.q-gutter-md.justify-center
+      .column
+        q-card
+          q-card-section
+            .text-h6.text-center Даты отпуска
+          q-separator(inset)
+          q-card-section
+            q-date.col(v-model="model.dates"
+                :locale='datei18n'
+                today-btn
+                first-day-of-week="1"
+                range
+                :options='dateGuard')
+      .col-6
+        .column.q-gutter-md
+          .row.justify-center
+            .col.q-pr-md: q-card
+                q-card-section.text-center Остаток дней отпуска
+                  | #[br] #[b на сегодня]
+                q-separator
+                q-card-section.flex.flex-center(style="fontSize: 24px")
+                  div(v-if='vacBalance.loading.value')
+                    q-spinner-tail
+                  div(v-if='vacBalance.result.value') {{ vacBalance.result }}
+            .col: q-card
+                q-card-section.text-center Остаток дней отпуска
+                  | #[br] #[b на {{ strFirstVacationDay }}]
+                q-separator
+                q-card-section.flex.flex-center(style="fontSize: 24px")
+                  div(v-if='vacFuturetureBalance.loading.value')
+                    q-spinner-tail
+                  div(v-if='vacFuturetureBalance.result.value') {{ vacFuturetureBalance.result }}
+          //- vacation type block
+          q-card
+            q-card-section
+              .text-h6.text-center Тип отпуска
+                q-badge(align='top'
+                        rounded
+                        color='blue') i
+                  q-tooltip
+                    div Ежегодный отпуск оплачивается по закондательству, в зависимости от вашего среднего заработка.
+                    div Отпуск за свой счет не оплачивается.
+            q-separator(inset)
+            q-card-section
+              .row.justify-center
+                q-btn-toggle(push glossy toggle-color="primary"
+                            v-model='model.isPayed'
+                            :options="vacationType")
 
-//- q-dialog(v-model='confirmDialog'
-//-         persistent)
-//-   q-card
-//-     q-card-section.row.items-center
-//-       q-avatar(icon='signal_wifi_off' color='primary' text-color='white')
-//-       span.q-ml-sm Подтвердите направление заявки
-//-     q-card-actions(align='right')
-//-       q-btn(flat label='Отменить' color='primary' v-close-popup)
-//-       q-btn(flat label='Подтвердить' color='primary' v-close-popup, @click="submit")  
+          q-card
+            q-card-section
+              .column
+                //- q-input(filled
+                //-         label='Страна и город'
+                //-         v-model='model.country'
+                //-         :rules="[val => !!val || 'Это поле обязательно нужно заполнить']")
+                //-   template(#prepend)
+                //-     q-icon(name='place')
+                //- q-input(filled
+                //-         label='Цель поездки'
+                //-         v-model='model.goal'
+                //-         :rules="[val => !!val || 'Это поле обязательно нужно заполнить']")
+                //- q-input(filled
+                //-         label='Основание для поездки'
+                //-         v-model='model.reason'
+                //-         :rules="[val => !!val || 'Это поле обязательно нужно заполнить']")
+                q-input(filled
+                        label='Комментарий'
+                        v-model='model.comment'
+                        type='textarea')
+    .row.flex-center
+      q-btn(color="purple"
+            @click='confirmDialog=true'
+            type='submit') Отправить заявку
 
-//- pre {{ calendarModel }}
-//- q-btn(@click="debug") debug
+
+q-dialog(v-model='confirmDialog'
+        persistent)
+  q-card
+    q-card-section.row.items-center
+      q-avatar(icon='work' color='negative' text-color='white')
+      .q-ml-sm.text-h6 Подтвердите направление заявки
+    q-card-section
+      q-markup-table
+        //- thead: tr: th(colspan='2')
+        //-   .text-h6 Проверьте параметры заявки на командировку
+        //- tbody
+        //-   tr
+        //-     td Даты командировки
+        //-     td {{ model.dates.from }} - {{ model.dates.to }}
+        //-   tr(v-if='isFreeDaysInside()')
+        //-     td Вид компенсации за выходные дни:
+        //-     td
+        //-       div(v-if="model.compensationType == 'money'") Оплата в двойном размере
+        //-       div(v-if="model.compensationType == 'freeDay'") Дополнительные оплачиваемые выходные
+        //-   tr
+        //-     td Место командирования
+        //-     td {{ model.country }}
+        //-   tr
+        //-     td Цель поездки
+        //-     td {{ model.goal }}
+        //-   tr
+        //-     td Основание поездки
+        //-     td {{ model.reason }}
+        //-   tr(v-if="model.comment != ''")
+        //-     td Дополнительный комментарий
+        //-     td {{ model.comment }}
+
+    q-card-actions(align='right')
+      q-btn(flat label='Отменить' color='primary' v-close-popup)
+      q-btn(flat label='Подтвердить' color='primary' v-close-popup, @click="submit")
+
 </template>
 
 <style scoped lang="scss">
 </style>
 
 <script setup lang="ts">
-import { ref, computed, getCurrentInstance } from 'vue'
-import { date } from 'quasar'
-// import { ActionsProvider } from 'src/data-model/data-provider'
+import { ref, reactive, computed } from 'vue'
+import { date as quasarDateUtil } from 'quasar'
 import { datei18n } from '../../../utils/quasar-i18n'
-import { useUser } from 'stores/user'
+import * as dateUtils from 'src/utils/date'
 import OrgSchedule from 'src/components/OrgSchedule.vue'
-import pino from 'pino'
+import cfg from 'src/config'
 
-// const log = pino({browser:{asObject: true}})
-// const instance = getCurrentInstance()
+const vacationType = [
+  {label:'Ежегодный (оплачиваемый)',   value:'true'},
+  {label:'За свой счет',  value:'false'}
+]
 
-// const form = ref(null)
+const confirmDialog = ref(false)
+const model = reactive({
+  dates: {
+    from: '2022/07/14',
+    to: '2022/07/28',
+  },
+  isPayed: true,
+  comment: ''
+})
 
-// const calendarModel = ref({
-//   from: '2022/05/31',
-//   to: '2022/06/07'
-// })
-// const checkboxModel = ref('true')
 
-// const splitterModel = ref(30);
+const getFirstVacationDate = computed(()=>{
+  if (!model.dates) return null
+  const strDate = model.dates.from ?? <string><unknown>model.dates
+  return strDate
+})
 
-// const vacationDuration = computed(()=>{
-//   const startDate = new Date(calendarModel.value.from)
-//   const endDate = new Date(calendarModel.value.to)
-//   const diff = date.getDateDiff(endDate, startDate, 'days')
+const strFirstVacationDay = computed(()=>{
+  const strDate = getFirstVacationDate
+  if (!strDate) return '--'
+  return dateUtils.formatRuDate(strDate.value)
+})
 
-//   return diff + 1;
-// })
+const vacBalance = cfg.providers.unitVacation.getVacationBalance()
+const vacFuturetureBalance = cfg.providers.unitVacation.getVacationBalanceOnDate(getFirstVacationDate)
 
-// const confirmDialog = ref(false)
+function submit() {
+  throw Error('not defined')
+}
 
-// function debug() {
-  
-//   log.warn({"current": instance}, 'hi from pino')
-
-//   // console.log(vacationRequest)
-// }
-
-// const user = useUser()
-
-// async function submit() {
-//   const res = await ActionsProvider.createRequest({
-//     requestTypeName: "VACATION",
-//     payload: {
-//       dateFrom: calendarModel.value.from,
-//       dateTo:   calendarModel.value.to,
-//       isPayed:  checkboxModel.value === 'true'
-//     }
-//   })
-//   console.log(res)
-// }
+function dateGuard (date) {
+  const dateDiff = quasarDateUtil.getDateDiff(date, Date.now())
+  console.log(date)
+  console.log(dateDiff)
+  return dateDiff >= 14
+}
 
 </script>

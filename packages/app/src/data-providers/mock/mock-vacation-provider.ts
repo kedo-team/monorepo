@@ -1,7 +1,8 @@
-import { date } from 'quasar'
+import { data } from './data/vacation-data'
+import { date as qDate } from 'quasar'
 import { IUserVacationDataProvider, IDataProviderResult } from 'src/data-providers/interfaces'
 import { IUserVacationViewModel } from 'src/view-model'
-import { ref } from 'vue'
+import { isRef, ref, Ref, ComputedRef, unref, watchEffect } from 'vue'
 
 
 
@@ -13,76 +14,57 @@ export class MockVacationDataProvider implements IUserVacationDataProvider {
       error: ref(null)
     }
   }
-  
-}
 
-const data: IUserVacationViewModel[] = [
-  {
-      email: "rhoncus.id@mail.ru",
-      firstName: "Lana",
-      id: "e06f94f4-81e0-4710-8e0c-0bef424d1b68",
-      lastName: "Vaughan",
-      phone: "+7 (949) 866-32-39",
-      avatarUrl: "https://cdn.quasar.dev/img/boy-avatar.png",
-      vacationsList: [
-        {
-          id: 'asd' ,
-          createdAt: '2022-06-28',
-          requestId: 'request-id',
-          ownerUserId: 'e06f94f4-81e0-4710-8e0c-0bef424d1b68',
-          status: 'IN_PROGRESS',
-          payload: {
-            dateFrom: '2022-06-28',
-            dateTo: '2022-07-07',
-            isPayed: true,
-          }
-        },
-        { 
-          id: 'asd' ,
-          createdAt: '2022-06-28',
-          requestId: 'request-id',
-          ownerUserId: 'e06f94f4-81e0-4710-8e0c-0bef424d1b68',
-          status: 'APPROVED',
-          payload: {
-            dateFrom: '2022-07-01',
-            dateTo: '2022-07-07',
-            isPayed: true,
-          }
-        }
-      ]
-  },
-  {
-    email: "rhoncus.id@mail.ru",
-    firstName: "Антон",
-    id: "e06f94f4-81e0-4710-8e0c-0bef424d1b69",
-    lastName: "Толкачев",
-    phone: "+7 (949) 866-32-39",
-    avatarUrl: "https://cdn.quasar.dev/img/boy-avatar.png",
-    vacationsList: [
-      {
-        id: 'asd-2' ,
-        createdAt: '2022-06-29',
-        requestId: 'request-id',
-        ownerUserId: 'e06f94f4-81e0-4710-8e0c-0bef424d1b68',
-        status: 'IN_PROGRESS',
-        payload: {
-          dateFrom: '2022-06-29',
-          dateTo: '2022-07-02',
-          isPayed: true,
-        }
-      },
-      { 
-        id: 'asd' ,
-        createdAt: '2022-06-28',
-        requestId: 'request-id',
-        ownerUserId: 'e06f94f4-81e0-4710-8e0c-0bef424d1b68',
-        status: 'APPROVED',
-        payload: {
-          dateFrom: '2022-07-03',
-          dateTo: '2022-07-06',
-          isPayed: true,
-        }
-      }
-    ]
+  private _vacationBalanceResult
+  getVacationBalance(): IDataProviderResult<number> {
+    if (!this._vacationBalanceResult)
+    this._vacationBalanceResult = {
+      result:  ref(14),
+      loading: ref(false),
+      error:   ref(null)
+    }
+    return this._vacationBalanceResult
   }
-]
+
+  getVacationBalanceOnDate(date: Ref<string> | string): IDataProviderResult<number> {
+    const result  = ref<number>(null),
+          loading = ref<boolean>(false),
+          error   = ref<string>(null)
+    
+          
+    async function update(currentBalance: number) {
+      // reseting state
+      result.value = null
+      loading.value = true
+      error.value = null
+
+      // fetching (computing) value
+      const dateDiff = qDate.getDateDiff(unref(date), Date.now(),'days')
+      setTimeout(() => {
+        // setting state
+        result.value = currentBalance + Math.round(dateDiff * (28/365))
+        loading.value = false
+      }, 1000)
+
+      
+    }
+
+
+    if (isRef(date)) {
+      watchEffect(()=>{
+        const currentBalance = this.getVacationBalance().result.value
+        update(currentBalance)
+      })
+    }
+     else {
+      const currentBalance = this.getVacationBalance().result.value
+      update(currentBalance)
+    }
+    
+    return {
+      result,
+      loading,
+      error
+    };
+  }
+}

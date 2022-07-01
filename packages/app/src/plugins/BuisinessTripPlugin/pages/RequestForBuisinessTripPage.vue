@@ -54,36 +54,11 @@ q-form(@submit="submit")
                         label='Комментарий'
                         v-model='model.comment'
                         type='textarea')
-    .row.justify-center
+    .row.flex-center
       q-btn(color="purple"
             @click='confirmDialog=true'
             type='submit') Отправить заявку
-  //- template(#after)
-  //-   .column.q-pa-md.q-gutter-y-md
-  //-     q-markup-table
-  //-       thead: tr: th(colspan='2') 
-  //-             .text-h4 Параметры заявления на командировку:
-  //-       tbody
-  //-         tr
-  //-           td Тип:
-  //-           td Отпуск за свой счет
-  //-         tr
-  //-           td Дата начала:
-  //-           td {{ calendarModel.from }}
-  //-         tr
-  //-           td Дата окончания:
-  //-           td {{ calendarModel.to }}
-  //-         tr
-  //-           td Продолжительность:
-  //-           td {{ vacationDuration }}
-  //-         tr
-  //-           td Согласующий руководитель:
-  //-           td: q-chip
-  //-             q-avatar: img(src='https://cdn.quasar.dev/img/avatar5.jpg')
-  //-             | Толкачев Антон
-  //-     .row.justify-start
-  //-       q-btn(color="purple"
-  //-             @click='confirmDialog=true') Отправить заявку
+
 
 q-dialog(v-model='confirmDialog'
         persistent)
@@ -121,7 +96,7 @@ q-dialog(v-model='confirmDialog'
       q-btn(flat label='Отменить' color='primary' v-close-popup)
       q-btn(flat label='Подтвердить' color='primary' v-close-popup, @click="submit")
 
-q-btn(@click="confirmDialog = true") Диалог
+
 //- pre {{ calendarModel }}
 //- q-btn(@click="debug") debug
 </template>

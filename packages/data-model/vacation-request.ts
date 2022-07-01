@@ -1,4 +1,3 @@
-import type { ITask } from './task'
 import type { IUser } from './user'
 import type { Status } from './status'
 import { IRequestType } from './request-types'
