@@ -2,28 +2,29 @@
 q-list
     //- q-item-label(header)
     //- | kedo навигатор
-    q-expansion-item.kedo-expansion(label="Я как сотрудник" 
-                    icon="perm_identity" 
-                    default-opened 
+    q-expansion-item.kedo-expansion(label="Я как сотрудник"
+                    icon="perm_identity"
+                    default-opened
                     header-class="kedo-menu-expansion-header")
       div.nav-link-container(v-for='route in routes')
-        q-btn.navigator-links(:label='route.meta.title' 
+        q-btn.navigator-links(:label='route.meta.title'
                               :to='route.path'
                               :icon='route.meta.icon'
-                               flat 
+                               flat
                                padding="xs")
-    q-expansion-item(label="Я как руководитель" 
-                    icon="supervisor_account" 
+    q-expansion-item(label="Я как руководитель"
+                    icon="supervisor_account"
                     default-opened
                     header-class="kedo-menu-expansion-header")
       div.nav-link-container(v-for='link in linksList')
         q-btn(:label='link.title' v-bind='link', flat padding="xs")
     q-expansion-item(label="Я как администратор"
-                    icon="manage_accounts" 
+                    icon="manage_accounts"
                     default-opened
                     header-class="kedo-menu-expansion-header")
       div.nav-link-container(v-for='link in linksList')
         q-btn(:label='link.title' v-bind='link', flat padding="xs")
+pre {{ routes }}
 </template>
 
 <style scoped lang="scss">
@@ -40,7 +41,7 @@ q-list
 <script setup lang="ts">
 import { getRoutes } from '../plugins/PluginManager'
 
-const routes = getRoutes();
+const routes = await getRoutes();
 
 const linksList = [
   {

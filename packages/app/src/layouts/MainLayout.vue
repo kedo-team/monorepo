@@ -12,7 +12,8 @@ q-layout(view='hhh Lpr lFf')
         q-icon(name="more_vert")
         UserMenu(@global-action="onGlobalAction")
   q-drawer.bg-primary(v-model='leftDrawerOpen' show-if-above bordered elevated)
-    LeftDrawerMenu
+    Suspense(timeout="0")
+      LeftDrawerMenu
   q-page-container
     router-view
 
@@ -23,9 +24,6 @@ import { ref } from 'vue';
 import UserMenu from './UserMenu.vue';
 import { useUser } from 'src/stores/user';
 import LeftDrawerMenu from './LeftDrawerMenu.vue';
-import { useRoute } from 'vue-router';
-
-const route = useRoute();
 
 const app_title = import.meta.env.VITE_APP_TITLE
 
@@ -36,6 +34,6 @@ function toggleLeftDrawer () {
 
 const user = useUser();
 function onGlobalAction() {
-  user.isLayoutInEditMode = true;  
+  user.isLayoutInEditMode = true;
 }
 </script>
