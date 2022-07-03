@@ -21,3 +21,5 @@ node_modules
 # use it for test and demo activities. Contains random samples.
 **/public/samples
 /packages/data-model/*.js
+/packages/data-model/*.d.ts
+**/*.tsbuildinfo

@@ -1,10 +1,10 @@
 import { data } from './data/vacation-data'
+import { notify } from 'src/decorators/notify'
 import { date as qDate } from 'quasar'
 import { IUserVacationDataProvider, IDataProviderResult } from 'src/data-providers/interfaces'
 import { IUserVacationViewModel } from 'src/view-model'
 import { isRef, ref, Ref, ComputedRef, unref, watchEffect } from 'vue'
-
-
+import { IVacationRequest } from '@kedo-team/data-model'
 
 export class MockVacationDataProvider implements IUserVacationDataProvider {
   getUnitsVacation(): IDataProviderResult<IUserVacationViewModel[]> {
@@ -67,4 +67,10 @@ export class MockVacationDataProvider implements IUserVacationDataProvider {
       error
     };
   }
+
+  @notify()
+  async sendVacationRequest(request: IVacationRequest) {
+    return ;
+  }
 }
+

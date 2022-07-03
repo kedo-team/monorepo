@@ -109,6 +109,8 @@ import { ref, reactive } from 'vue'
 import { date } from 'quasar'
 import { datei18n } from '../../../utils/quasar-i18n'
 import { useUser } from 'stores/user'
+import cfg from 'src/config'
+import { IBuisinessTripRequest } from '@kedo-team/data-model'
 
 const model = reactive({
    country: '',
@@ -142,14 +144,14 @@ function isFreeDaysInside(): boolean {
 
   let currentDate = date.subtractFromDate(new Date(model.dates.from), {days: 1})
   const endDate = new Date(model.dates.to)
-  
+
   do {
-    
+
     currentDate = date.addToDate(currentDate, {days: 1})
 
     const found = isDayOff(currentDate)
     console.log(currentDate, found)
-    if (found) return true    
+    if (found) return true
   } while (date.isSameDate(currentDate, endDate) == false)
 
   return false
@@ -165,16 +167,22 @@ const confirmDialog = ref(false)
 const user = useUser()
 
 async function submit() {
-  console.log(model)
-  // const res = await ActionsProvider.createRequest({
-  //   requestTypeName: "VACATION",
-  //   payload: {
-  //     dateFrom: calendarModel.value.from,
-  //     dateTo:   calendarModel.value.to,
-  //     isPayed:  checkboxModel.value === 'true'
-  //   }
-  // })
-  // console.log(res)
+  const req: IBuisinessTripRequest = {
+    id: '',
+    ownerUserId: user.id,
+    requestTypeName: 'BUISINESS_TRIP',
+    comment: model.comment,
+    status: 'PENDING',
+    createdAt: new Date().toDateString(),
+    payload: {
+      dateFrom: model.dates.from,
+      dateTo: model.dates.to,
+      target: model.country,
+      goal: model.goal,
+      reason: model.reason
+    }
+  }
+  cfg.providers.buisinessTrip.sendRequest(req)
 }
 
 </script>
