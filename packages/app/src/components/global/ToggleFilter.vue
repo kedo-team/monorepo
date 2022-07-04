@@ -1,28 +1,32 @@
 <template lang="pug">
 q-btn-toggle(:options='props.options'
-            v-model='model'
+            v-model='btnModel'
             push
             glossy
-            toggle-color='primary')
+            toggle-color='primary'
+            @update:model-value='updateModel')
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import type { IFilterOption } from 'src/view-model'
 
 const props = defineProps<{
+  modelValue: any
   options: IFilterOption[]
 }>()
 
-const emit = defineEmits(['changed'])
+const defOpt = props.options.find(o=>o.default)
+const defValue = defOpt ? defOpt.value : props.options[0].value
 
-// setting default value
-const defValue = props.options.find(el => el.default ?? false)
-const model = ref(defValue ?? props.options[0].value)
-// watch for changed and emit event
-watch (model, () => {
-  emit('changed', model.value)
-})
+const btnModel = ref(defValue)
 
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: any)
+}>()
+
+function updateModel(newVal) {
+  emit("update:modelValue", newVal)
+}
 
 </script>
