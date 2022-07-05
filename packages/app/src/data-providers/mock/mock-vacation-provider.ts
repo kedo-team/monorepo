@@ -3,7 +3,7 @@ import { notify } from 'src/decorators/notify'
 import { date as qDate } from 'quasar'
 import { IUserVacationDataProvider, IDataProviderResult } from 'src/data-providers/interfaces'
 import { IUserVacationViewModel } from 'src/view-model'
-import { isRef, ref, Ref, ComputedRef, unref, watchEffect } from 'vue'
+import { isRef, ref, Ref, unref, watch } from 'vue'
 import { IVacationRequest } from '@kedo-team/data-model'
 
 export class MockVacationDataProvider implements IUserVacationDataProvider {
@@ -30,9 +30,13 @@ export class MockVacationDataProvider implements IUserVacationDataProvider {
     const result  = ref<number>(null),
           loading = ref<boolean>(false),
           error   = ref<string>(null)
-    
-          
-    async function update(currentBalance: number) {
+
+
+    async function update(currentBalance: number, date: string) {
+      // empty date string -> exit
+      if (!unref(date)) return
+
+
       // reseting state
       result.value = null
       loading.value = true
@@ -40,27 +44,27 @@ export class MockVacationDataProvider implements IUserVacationDataProvider {
 
       // fetching (computing) value
       const dateDiff = qDate.getDateDiff(unref(date), Date.now(),'days')
+
       setTimeout(() => {
         // setting state
         result.value = currentBalance + Math.round(dateDiff * (28/365))
         loading.value = false
       }, 1000)
-
-      
     }
 
-
+    console.log('isRef date: ', isRef(date))
     if (isRef(date)) {
-      watchEffect(()=>{
-        const currentBalance = this.getVacationBalance().result.value
-        update(currentBalance)
+      watch(date, (newVal) => {
+        const currentBalance = unref(this.getVacationBalance().result.value)
+        update(currentBalance, newVal)
       })
+
     }
      else {
       const currentBalance = this.getVacationBalance().result.value
-      update(currentBalance)
+      update(currentBalance, date)
     }
-    
+
     return {
       result,
       loading,

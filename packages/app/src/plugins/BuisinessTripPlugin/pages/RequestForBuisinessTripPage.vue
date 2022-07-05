@@ -1,7 +1,11 @@
 <template lang="pug">
+.column.justify-center
+  .col.q-pb-md
+    q-card: q-card-section
+      OrgSchedule
 
-
-q-form(@submit="submit")
+q-form(@submit='confirmDialog = true'
+       greedy)
   .column.justify-center
     .row.q-gutter-md.justify-center
       .column
@@ -10,11 +14,8 @@ q-form(@submit="submit")
             .text-h6.text-center Даты командировки
           q-separator(inset)
           q-card-section
-            q-date.col(v-model="model.dates"
-                :locale='datei18n'
-                today-btn
-                first-day-of-week="1"
-                range)
+            RangeCalendar(v-model='dateRangeModel'
+                          :restrictTo='0')
       .col-6
         .column.q-gutter-md
           q-card
@@ -29,10 +30,14 @@ q-form(@submit="submit")
             q-separator(inset)
             q-card-section
               .row.justify-center
-                q-btn-toggle(push glossy toggle-color="primary"
+                ToggleFilter(:options='compensationOptions',
                             v-model='model.compensationType'
-                            :options="compensationOptions"
                             :disable="!isFreeDaysInside()")
+
+                //- q-btn-toggle(push glossy toggle-color="primary"
+                //-             v-model='model.compensationType'
+                //-             :options="compensationOptions"
+                //-             :disable="!isFreeDaysInside()")
           q-card
             q-card-section
               .column
@@ -56,24 +61,19 @@ q-form(@submit="submit")
                         type='textarea')
     .row.flex-center
       q-btn(color="purple"
-            @click='confirmDialog=true'
             type='submit') Отправить заявку
 
 
-q-dialog(v-model='confirmDialog'
-        persistent)
-  q-card
-    q-card-section.row.items-center
-      q-avatar(icon='work' color='negative' text-color='white')
-      .q-ml-sm.text-h6 Подтвердите направление заявки
-    q-card-section
+RequestConfirmationDialog(v-model='confirmDialog'
+                          :request-type='requestTypeName'
+                          @confirmed='submitRequest')
       q-markup-table
-        //- thead: tr: th(colspan='2')
-        //-   .text-h6 Проверьте параметры заявки на командировку
+        thead: tr: th(colspan='2')
+          .text-h6 Параметры заявки на командировку
         tbody
           tr
             td Даты командировки
-            td {{ model.dates.from }} - {{ model.dates.to }}
+            td {{ dateRangeModel.dateFrom }} - {{ dateRangeModel.dateTo }}
           tr(v-if='isFreeDaysInside()')
             td Вид компенсации за выходные дни:
             td
@@ -92,91 +92,66 @@ q-dialog(v-model='confirmDialog'
             td Дополнительный комментарий
             td {{ model.comment }}
 
-    q-card-actions(align='right')
-      q-btn(flat label='Отменить' color='primary' v-close-popup)
-      q-btn(flat label='Подтвердить' color='primary' v-close-popup, @click="submit")
 
-
-//- pre {{ calendarModel }}
-//- q-btn(@click="debug") debug
 </template>
-
-<style scoped lang="scss">
-</style>
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import { date } from 'quasar'
-import { datei18n } from '../../../utils/quasar-i18n'
+import * as dateUtils from 'src/utils/date'
 import { useUser } from 'stores/user'
 import cfg from 'src/config'
-import { IBuisinessTripRequest } from '@kedo-team/data-model'
+import type { IRequestType, IBuisinessTripRequest } from '@kedo-team/data-model'
+import type { IDateRange, IFilterOption } from 'src/view-model'
+import RangeCalendar from 'src/components/global/RangeCalendar.vue'
+import ToggleFilter from 'src/components/global/ToggleFilter.vue'
+import OrgSchedule from 'src/components/OrgSchedule.vue'
+import RequestConfirmationDialog from 'src/components/RequestConfirmationDialog.vue'
 
 const model = reactive({
    country: '',
    goal: '',
    reason: '',
    comment: '',
-   compensationType: 'freeDay',
-   dates:{
-     from: '',
-     to: ''
-   }
+   compensationType: 'freeDay'
 })
 
-const compensationOptions = [
-                          {label:'Доп.входной',   value:'freeDay'},
+const dateRangeModel = ref<IDateRange> ({
+  dateFrom: '',
+  dateTo: ''
+})
+
+const requestTypeName: IRequestType = 'BUISINESS_TRIP'
+
+const compensationOptions: IFilterOption[] = [
+                          {label:'Доп.входной',   value:'freeDay', default: true},
                           {label:'Оплата x2', value:'money'}
                         ]
 
 
 function isFreeDaysInside(): boolean {
-  console.log('reading model', model.dates)
-  if (!model.dates) return false;
-  if (typeof (model.dates) === 'string') {
-    const retVal = isDayOff(new Date(model.dates))
-    console.log('check one day', retVal)
-    return retVal
+  if (dateRangeModel.value.dateFrom && dateRangeModel.value.dateTo)
+  {
+    return dateUtils.isFreeDaysInside(dateRangeModel.value.dateFrom, dateRangeModel.value.dateTo)
   }
-
-  if (!model.dates.from && !model.dates.to)
-    return false;
-
-  let currentDate = date.subtractFromDate(new Date(model.dates.from), {days: 1})
-  const endDate = new Date(model.dates.to)
-
-  do {
-
-    currentDate = date.addToDate(currentDate, {days: 1})
-
-    const found = isDayOff(currentDate)
-    console.log(currentDate, found)
-    if (found) return true
-  } while (date.isSameDate(currentDate, endDate) == false)
-
   return false
 }
 
-function isDayOff(d: Date): boolean {
-  const dow = date.getDayOfWeek(d)
-  return [6, 7].includes(dow)
-}
 
 const confirmDialog = ref(false)
 
 const user = useUser()
 
-async function submit() {
+async function submitRequest() {
   const req: IBuisinessTripRequest = {
     id: '',
     ownerUserId: user.id,
-    requestTypeName: 'BUISINESS_TRIP',
+    requestTypeName,
     comment: model.comment,
     status: 'PENDING',
     createdAt: new Date().toDateString(),
     payload: {
-      dateFrom: model.dates.from,
-      dateTo: model.dates.to,
+      dateFrom: dateRangeModel.value.dateFrom,
+      dateTo: dateRangeModel.value.dateTo,
       target: model.country,
       goal: model.goal,
       reason: model.reason

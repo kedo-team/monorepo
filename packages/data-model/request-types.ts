@@ -1,1 +1,1 @@
-export type IRequestType = "VACATION"
+export type IRequestType = "VACATION" | "BUISINESS_TRIP" | "CERTIFICATE"

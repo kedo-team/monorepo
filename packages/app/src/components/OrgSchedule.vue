@@ -1,11 +1,11 @@
 <template lang='pug'>
 .row.flex-center.q-pb-md
   .col.text-center
-    ToggleFilters(:options='filterOptions'
-                  @changed='filterChanged')
+    ToggleFilters(v-model='filterModel'
+                 :options='filterOptions')
 
 
-QCalendarScheduler(:view='viewModel'
+QCalendarScheduler(:view='filterModel'
                   v-model:model-resources='result'
                   resource-key='id'
                   resource-label='firstName'
@@ -24,8 +24,8 @@ QCalendarScheduler(:view='viewModel'
             :key="index")
       q-badge(color="blue"
               :label="event.status"
-              :style="getStyle(scope, event)")  
-    
+              :style="getStyle(scope, event)")
+
   //-----------------------------------------------------------
   template(#resource-label="{ scope: { resource } }")
     KT-UserAvatar(:data='resource')
@@ -42,7 +42,7 @@ import ToggleFilters from 'src/components/global/ToggleFilter.vue'
 import { QCalendarScheduler, today } from '@quasar/quasar-ui-qcalendar/'
 import type { IFilterOption } from 'src/view-model'
 import cfg from 'src/config'
-import type { IVacationData } from '@kedo-team/data-model'
+import type { IVacation } from '@kedo-team/data-model'
 
 
 const {result, loading, error} = cfg.providers.unitVacation.getUnitsVacation()
@@ -59,13 +59,10 @@ const filterOptions: IFilterOption[] = [
   },
 ]
 
-const viewModel = ref('week')
-function filterChanged(val: string) {
-  viewModel.value = val
-}
+const filterModel = ref('week')
 
-function getEvents (scope: any): IVacationData[] {
-  const vacations: IVacationData[] = scope.resource.vacationsList;
+function getEvents (scope: any): IVacation[] {
+  const vacations: IVacation[] = scope.resource.vacationsList;
   if (!vacations || vacations.length === 0)
     return [];
   // cheking if events will be visible on current schedule
@@ -73,7 +70,7 @@ function getEvents (scope: any): IVacationData[] {
   const endScheduleDate   = scope.days[scope.days.length-1].date
 
   const filteredVacations =  vacations.filter(vac => {
-    const isVisible = checkDateRange(vac.payload.dateFrom, startScheduleDate, endScheduleDate) 
+    const isVisible = checkDateRange(vac.payload.dateFrom, startScheduleDate, endScheduleDate)
                       ||
                       checkDateRange(vac.payload.dateTo, startScheduleDate, endScheduleDate)
     return isVisible
@@ -83,8 +80,8 @@ function getEvents (scope: any): IVacationData[] {
 }
 
 function checkDateRange(target: string, startRange: string, endRange: string): boolean {
-  const targetDate = dateUtils.tryParseDate(target)  
-  const startDate =  dateUtils.tryParseDate(startRange)     
+  const targetDate = dateUtils.tryParseDate(target)
+  const startDate =  dateUtils.tryParseDate(startRange)
   const endDate   =  dateUtils.tryParseDate(endRange)
 
   const opts = {
@@ -92,10 +89,10 @@ function checkDateRange(target: string, startRange: string, endRange: string): b
     inclusiveTo: true,
     onlyDate: true
   }
-  return date.isBetweenDates(targetDate, startDate, endDate, opts) 
+  return date.isBetweenDates(targetDate, startDate, endDate, opts)
 }
 
-function getEventLeft(scope: any, event: IVacationData): string {
+function getEventLeft(scope: any, event: IVacation): string {
   // event.dow = Это насколько от левой даты начинается отпуск
 
   // 1 вычисляем с какого индекса стартовать отрисовку (0 - первый)
@@ -109,15 +106,15 @@ function getEventLeft(scope: any, event: IVacationData): string {
   return retVal
 }
 
-function getEventWidth(scope: any, event: IVacationData): string {
+function getEventWidth(scope: any, event: IVacation): string {
   // RANGE = продолжитльность в днях
   // const width = (event.range ? event.range : 2) * parseFloat(scope.cellWidth)
   const width = 2 * parseFloat(scope.cellWidth)
   const val = width + (scope.cellWidth.endsWith('%') ? '%' : 'px')
-  return val  
+  return val
 }
 
-function  getStyle (scope: any, event: IVacationData) {
+function  getStyle (scope: any, event: IVacation) {
       return {
         position: 'absolute',
         background: 'white',

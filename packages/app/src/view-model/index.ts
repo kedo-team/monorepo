@@ -5,6 +5,11 @@ export interface IFilterOption {
   default?: boolean
 }
 
+export interface IDateRange {
+  dateFrom: string,
+  dateTo: string
+}
+
 export * from './ITaskViewModel'
 export * from './IUserVacationViewModel'
 export * from './IRequestViewModel'

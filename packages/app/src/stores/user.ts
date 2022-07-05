@@ -8,7 +8,6 @@ const _layoutLocalStorageKey = 'kedo/layout';
 
 export const useUser = defineStore('userStore', {
   state: () => {
-    console.log('user store. initializing')
     return {
       isAuthenticated: false,
       firstName: '',
@@ -32,7 +31,7 @@ export const useUser = defineStore('userStore', {
   actions: {
     // async authenticate() {
     // },
-    
+
     /**
      * Returns current layout.
      * Try load it from the localStorage first, if it empty loading it from a remote storage.

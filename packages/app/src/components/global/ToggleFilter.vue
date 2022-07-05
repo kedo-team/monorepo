@@ -4,17 +4,22 @@ q-btn-toggle(:options='props.options'
             push
             glossy
             toggle-color='primary'
-            @update:model-value='updateModel')
+            @update:model-value='updateModel'
+            :disable="disable")
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { IFilterOption } from 'src/view-model'
 
-const props = defineProps<{
+export interface IProps {
+  disable?: boolean
   modelValue: any
   options: IFilterOption[]
-}>()
+}
+const props = withDefaults(defineProps<IProps>(), {
+  disable: false
+})
 
 const defOpt = props.options.find(o=>o.default)
 const defValue = defOpt ? defOpt.value : props.options[0].value

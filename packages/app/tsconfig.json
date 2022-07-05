@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "jsx": "preserve",
     "experimentalDecorators": true,
+    "jsx": "preserve",
     "target": "ES2020",
     "moduleResolution": "Node",
     "module": "ES2020",

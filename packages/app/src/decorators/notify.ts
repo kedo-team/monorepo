@@ -1,9 +1,9 @@
 import { Notify } from 'quasar'
 
-export function notify() {
+export function notify(): any {
   return function(target: any, propKey: string, descriptor: PropertyDescriptor) {
     const targetMethod = descriptor.value
-    
+
     // TODO: It's needs to be a decarator BeforeAfter factory
     descriptor.value = function (...args: any[]) {
       const notif = Notify.create({
@@ -24,8 +24,8 @@ export function notify() {
           message: 'Завка направлена!',
           timeout: 3000
         })
-      }, 4000)      
-      
+      }, 4000)
+
       return res;
     }
   }

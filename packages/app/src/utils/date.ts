@@ -14,3 +14,27 @@ export function formatRuDate(date: Date | string) {
   }
   return qDate.formatDate(date, 'D MMM YY, ddd', datei18n)
 }
+
+export function isFreeDaysInside(from: string, to: string) {
+  if (!from || !to)
+    return false;
+
+  let currentDate = qDate.subtractFromDate(new Date(from), {days: 1})
+  const endDate = new Date(to)
+
+  do {
+
+    currentDate = qDate.addToDate(currentDate, {days: 1})
+
+    const found = isDayOff(currentDate)
+    // console.log(currentDate, found)
+    if (found) return true
+  } while (qDate.isSameDate(currentDate, endDate) == false)
+
+    return false
+}
+
+function isDayOff(d: Date): boolean {
+  const dow = qDate.getDayOfWeek(d)
+  return [6, 7].includes(dow)
+}
