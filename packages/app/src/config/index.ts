@@ -2,14 +2,14 @@ import type { IUserTaskDataProvider,
               IUserVacationDataProvider,
               IRequestDataProvider,
               IPayslipDataProvider,
-              IBuisinessTripDataProvider} from 'src/data-providers/interfaces'
+              IBuisinessTripDataProvider,
+              ICompanyUnitDataProvider} from 'src/data-providers/interfaces'
 import { MockVacationDataProvider,
          MockUserTaskDataProvider,
          MockRequestDataProvider,
          MockPayslipDataProvider,
-         MockBuisinessTripProvider } from 'src/data-providers/mock'
-
-
+         MockBuisinessTripProvider,
+         MockCompanyUnitProvider } from 'src/data-providers/mock'
 
 // singleton
 class AppConfig implements IAppConfig {
@@ -21,7 +21,8 @@ class AppConfig implements IAppConfig {
               userTask:    new MockUserTaskDataProvider(),
               request: new MockRequestDataProvider(),
               payslip: new MockPayslipDataProvider(),
-              buisinessTrip: new MockBuisinessTripProvider()
+              buisinessTrip: new MockBuisinessTripProvider(),
+              companyUnit: new MockCompanyUnitProvider()
             }
   public plugins = [
     './CorePlugin/',
@@ -42,6 +43,7 @@ interface IAppConfig {
     request: IRequestDataProvider
     payslip: IPayslipDataProvider
     buisinessTrip: IBuisinessTripDataProvider
+    companyUnit: ICompanyUnitDataProvider
   }
 
   plugins: string[]
