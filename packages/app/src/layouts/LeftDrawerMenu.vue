@@ -1,30 +1,16 @@
 <template lang="pug">
 q-list
-    //- q-item-label(header)
-    //- | kedo навигатор
-    q-expansion-item.kedo-expansion(label="Я как сотрудник"
-                    icon="perm_identity"
-                    default-opened
-                    header-class="kedo-menu-expansion-header")
-      div.nav-link-container(v-for='route in routes')
+  q-expansion-item.kedo-expansion(v-for='roleDef in roleDefinitions'
+                                  v-bind='roleDef'
+                                  default-opened
+                                  header-class="kedo-menu-expansion-header")
+    div.nav-link-container(v-for='route in getAppRoleRoutes(roleDef.role)')
         q-btn.navigator-links(:label='route.meta.title'
                               :to='route.path'
                               :icon='route.meta.icon'
                                flat
                                padding="xs")
-    q-expansion-item(label="Я как руководитель"
-                    icon="supervisor_account"
-                    default-opened
-                    header-class="kedo-menu-expansion-header")
-      div.nav-link-container(v-for='link in linksList')
-        q-btn(:label='link.title' v-bind='link', flat padding="xs")
-    q-expansion-item(label="Я как администратор"
-                    icon="manage_accounts"
-                    default-opened
-                    header-class="kedo-menu-expansion-header")
-      div.nav-link-container(v-for='link in linksList')
-        q-btn(:label='link.title' v-bind='link', flat padding="xs")
-pre {{ routes }}
+
 </template>
 
 <style scoped lang="scss">
@@ -37,11 +23,38 @@ pre {{ routes }}
 }
 </style>
 
-
 <script setup lang="ts">
 import { getRoutes } from '../plugins/PluginManager'
+import type { IRouteRecord } from '../plugins/PluginManager';
+import type { IUserRole } from '@kedo-team/data-model'
 
-const routes = await getRoutes();
+const allRoutes = await getRoutes();
+
+function getAppRoleRoutes(role: IUserRole):IRouteRecord[] {
+  const filteredRoutes = allRoutes.filter(r => r.meta.role == role)
+  return filteredRoutes
+}
+
+interface IRoleDefinition {
+  role: IUserRole
+  label: string
+  icon: string
+}
+const roleDefinitions: IRoleDefinition[] = [{
+  role: 'app_user',
+  label: 'Я как сотрудник',
+  icon: 'perm_identity'
+},
+{
+  role: 'app_head',
+  label: 'Я как руководитель',
+  icon: 'supervisor_account'
+},
+{
+  role: 'app_admin',
+  label: 'Я как администратор',
+  icon: 'manage_accounts'
+}]
 
 const linksList = [
   {
