@@ -1,3 +1,4 @@
+export * from './auth-provider'
 export * from './common'
 export * from './request-data-provider'
 export * from './user-task-data-provider'

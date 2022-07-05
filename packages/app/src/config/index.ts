@@ -3,13 +3,16 @@ import type { IUserTaskDataProvider,
               IRequestDataProvider,
               IPayslipDataProvider,
               IBuisinessTripDataProvider,
-              ICompanyUnitDataProvider} from 'src/data-providers/interfaces'
+              ICompanyUnitDataProvider,
+              IAuthProvider} from 'src/data-providers/interfaces'
+import { KeyCloakAuthProvider } from 'src/data-providers/Keycloak-auth-provider'
 import { MockVacationDataProvider,
          MockUserTaskDataProvider,
          MockRequestDataProvider,
          MockPayslipDataProvider,
          MockBuisinessTripProvider,
-         MockCompanyUnitProvider } from 'src/data-providers/mock'
+         MockCompanyUnitProvider,
+         MockAuthProvider} from 'src/data-providers/mock'
 
 // singleton
 class AppConfig implements IAppConfig {
@@ -22,7 +25,13 @@ class AppConfig implements IAppConfig {
               request: new MockRequestDataProvider(),
               payslip: new MockPayslipDataProvider(),
               buisinessTrip: new MockBuisinessTripProvider(),
-              companyUnit: new MockCompanyUnitProvider()
+              companyUnit: new MockCompanyUnitProvider(),
+              auth: new MockAuthProvider()
+              // auth: new KeyCloakAuthProvider({
+              //   url:      import.meta.env.VITE_OIDC_URL,
+              //   realm:    import.meta.env.VITE_OIDC_URL_REALM,
+              //   clientId: import.meta.env.VITE_OIDC_CLIENT_ID
+              // })
             }
   public plugins = [
     './CorePlugin/',
@@ -44,6 +53,7 @@ interface IAppConfig {
     payslip: IPayslipDataProvider
     buisinessTrip: IBuisinessTripDataProvider
     companyUnit: ICompanyUnitDataProvider
+    auth: IAuthProvider
   }
 
   plugins: string[]

@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia'
 import { LocalStorage } from 'quasar'
 import { GridStackOptions, GridStackWidget } from 'gridstack'
-import  type Keycloak from 'keycloak-js'
-import { keycloak } from '../boot/auth'
+import cfg from 'src/config';
 
 const _layoutLocalStorageKey = 'kedo/layout';
 
@@ -14,17 +13,16 @@ export const useUser = defineStore('userStore', {
       lastName: '',
       avatarUrl: '',
       isLayoutInEditMode: false,
-      _keycloak: keycloak
+      _auth: cfg.providers.auth
     }
   },
 
   getters: {
     jwt: (state) => {
-      return state._keycloak?.token
+      return state._auth.getJwt()
     },
     id: (state) => {
-      console.log('getting user id', state._keycloak.subject)
-      return state._keycloak?.subject
+      return state._auth.getSubject()
     }
   },
 
