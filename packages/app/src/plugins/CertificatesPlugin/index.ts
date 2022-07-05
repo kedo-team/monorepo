@@ -9,7 +9,8 @@ const routes: IRouteRecord[] = [{
     meta: {
         title: 'Запрос справок',
         description: 'Справки направляются в кадровую службу и возвращаются вам обратно в личный кабинет.',
-        icon: 'article'
+        icon: 'article',
+        role: 'app_user'
     }
 }]
 
@@ -17,7 +18,7 @@ const widgets: IWidgetDefinition[] = [{
     name: 'Мои справки',
     description: 'Справки, запрошенные мной в кадровой службе',
     imgUrl: 'https://picsum.photos/seed/seed4565/80/60',
-    component: () => 
+    component: () =>
         import('./widgets/MyCertificatesWidget.vue')
 }]
 

@@ -10,7 +10,8 @@ const routes: IRouteRecord[] = [{
     meta: {
         title: 'Орг.структура',
         description: 'Организационная структура компании',
-        icon: 'account_tree'
+        icon: 'account_tree',
+        role: 'app_admin'
     }
 }]
 
@@ -19,7 +20,7 @@ const widgets: IWidgetDefinition[] = [
     // name: 'Мои справки',
     // description: 'Справки, запрошенные мной в кадровой службе',
     // imgUrl: 'https://picsum.photos/seed/seed4565/80/60',
-    // component: () => 
+    // component: () =>
     //     import('./widgets/MyCertificatesWidget.vue')
 // }
 ]

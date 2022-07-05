@@ -4,6 +4,7 @@ import  LoadingComponent from '../components/LoadingComponent.vue'
 import  ErrorWidget from '../components/ErrorWidget.vue'
 import cfg from 'src/config'
 import { route } from 'quasar/wrappers'
+import { IUserRole } from '@kedo-team/data-model'
 
 const plugins = cfg.plugins
 
@@ -82,6 +83,7 @@ export type IRouteRecord = RouteRecordRaw & {
     meta: {
         title?: string
         description?: string
-        icon?: string
+        icon?: string,
+        role: IUserRole
     }
 }

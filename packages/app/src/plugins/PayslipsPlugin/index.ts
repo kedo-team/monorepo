@@ -8,7 +8,7 @@ const widgets: IWidgetDefinition[] = [
     name: 'Расчетные листки',
     description: 'Информация о начислениях заработной платы',
     imgUrl: 'https://picsum.photos/seed/seed14/80/60',
-    component: () => 
+    component: () =>
         import('./widgets/PaySlipsWidget.vue')
 }]
 
@@ -18,14 +18,15 @@ const routes: IRouteRecord[] = [{
     meta: {
         title: 'Расчетные листки',
         description: 'Информация о всех начислениях зарплаты за любой период',
-        icon: 'currency_ruble'
+        icon: 'currency_ruble',
+        role: 'app_user'
     }
 }]
 
 
 export {
     name,
-    description, 
+    description,
     routes,
     widgets,
 }

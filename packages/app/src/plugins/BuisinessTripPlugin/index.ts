@@ -9,7 +9,8 @@ const routes: IRouteRecord[] = [{
     meta: {
         title: 'Заявка на командировку',
         description: 'Будет создана заявка на вашу командировку, запущена на согласование и отправлено в кадровую службу. Статус заявки вы сможете отслеживать в виджетах или на странице "Мои заявления".',
-        icon: 'work'
+        icon: 'work',
+        role: 'app_user'
     }
 }]
 
@@ -17,13 +18,13 @@ const routes: IRouteRecord[] = [{
 //     name: 'Widget short name',
 //     description: 'Widget long and detail description',
 //     imgUrl: 'https://picsum.photos/seed/seed666/80/60',
-//     component: () => 
+//     component: () =>
 //         import('./widgets/RequestForVacation.vue')
 // }]
 
 export {
     name,
-    description, 
+    description,
     routes,
     // widgets,
 }

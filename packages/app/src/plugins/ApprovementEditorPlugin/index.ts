@@ -9,12 +9,13 @@ const routes: IRouteRecord[] = [{
     meta: {
         title: 'БП согласований',
         description: 'Редактирование БП согласования заявок для всех доступных кадровых БП',
-        icon: 'self_improvement'
+        icon: 'self_improvement',
+        role: 'app_admin'
     }
 }]
 
 export {
     name,
-    description, 
+    description,
     routes,
 }
