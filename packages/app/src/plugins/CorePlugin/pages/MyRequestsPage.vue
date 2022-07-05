@@ -1,32 +1,28 @@
 <template lang="pug">
 .column
-  q-btn-toggle.q-pa-md.justify-center(v-model='toggleFilter'
-                                        push
-                                        glossy
-                                        toggle-color="primary"
-                                        :options='toggleOptions')
+  KT-ButtonToggle(v-model='toggleFilter'
+                  :options='toggleOptions')
   //- TODO: Вот эту проверку нужно отсюда убрать. И все объекты возвращаемые apollo перенести в SmartTable
   //- TODO: все объекты возвращаемые apollo перенести в SmartTable
   //- TODO: Как-то нужно выводить типы и таблицы из query
   KT-SmartTable(v-if='result'
                 :columns='columns'
                 :columnsDefinition='columnDefinition'
-                :templateDefinition='templateDefinition'              
+                :templateDefinition='templateDefinition'
                 :result='result'
                 :loading='loading'
                 :error='error'
                 )
-  
+
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useQuery } from '@vue/apollo-composable'
 import type { QTableColumnDefinition, SlotTemplateDefinition } from 'src/quasar'
 // import RequestAll from './queries/Request.all.graphql'
 // import RequestDone from './queries/Request.done.graphql'
 // import RequestInProgress from './queries/Request.undone.graphql'
-import type { DocumentNode } from 'graphql'
-import cfg from 'src/config';
+import cfg from 'src/config'
+import type { IFilterOption } from 'src/view-model'
 
 const columns = ['createdAt', 'status']
 const columnDefinition: QTableColumnDefinition[] = [{
@@ -41,12 +37,12 @@ const templateDefinition: SlotTemplateDefinition[] = [{
     slot: 'requestTypeName',
     component: 'KT-RequestTitle'
 }]
-// const columnDefinition = 
+// const columnDefinition =
 
-const toggleOptions = [
+const toggleOptions: IFilterOption[] = [
           {label: 'Все', value: 'all'},
           {label: 'Выполненные', value: 'done'},
-          {label: 'Текущие невыполненные', value: 'in_progress'}
+          {label: 'Текущие невыполненные', value: 'in_progress', default:true}
           ]
 
 const toggleFilter = ref('all')
@@ -63,7 +59,7 @@ const { result, loading, error } = cfg.providers.request.getUserRequests()
 // }
 
 // const { result, loading, error} = useQuery(
-//                                     () => { return getQuery(toggleFilter) }                                  
+//                                     () => { return getQuery(toggleFilter) }
 //                                  )
 
 </script>

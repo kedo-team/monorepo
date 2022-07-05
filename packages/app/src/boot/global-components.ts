@@ -1,12 +1,13 @@
 import { boot } from 'quasar/wrappers'
-import UserAvatar from '../components/global/UserAvatar.vue'
-import ButtonDownload from '../components/global/ButtonDownload.vue'
-import IssueStatus from '../components/global/IssueStatus.vue'
-import ApproveReject from '../components/global/ApproveReject.vue'
-import RequestTitle from '../components/global/RequestTitle.vue'
-import IsViewed from '../components/global/IsViewed.vue'
-import SmartTable from '../components/global/SmartTable.vue'
-import WorkflowInstanceString from '../components/global/WorkflowInstanceString.vue'
+import UserAvatar from 'src/components/global/UserAvatar.vue'
+import ButtonDownload from 'src/components/global/ButtonDownload.vue'
+import IssueStatus from 'src/components/global/IssueStatus.vue'
+import ApproveReject from 'src/components/global/ApproveReject.vue'
+import RequestTitle from 'src/components/global/RequestTitle.vue'
+import IsViewed from 'src/components/global/IsViewed.vue'
+import SmartTable from 'src/components/global/SmartTable.vue'
+import WorkflowInstanceString from 'src/components/global/WorkflowInstanceString.vue'
+import ButtonToggle from 'src/components/global/ButtonToggle.vue'
 
 export default boot(async ({ app }) => {
     app.component('KT-UserAvatar',     UserAvatar)
@@ -16,5 +17,6 @@ export default boot(async ({ app }) => {
        .component('KT-RequestTitle',   RequestTitle)
        .component('KT-IsViewed',       IsViewed)
        .component('KT-SmartTable',     SmartTable)
-       .component('KT-WorkflowInstanceString',     WorkflowInstanceString)
+       .component('KT-WorkflowInstanceString', WorkflowInstanceString)
+       .component('KT-ButtonToggle',     ButtonToggle)
 });

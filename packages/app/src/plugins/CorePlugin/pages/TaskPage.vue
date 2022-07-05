@@ -1,6 +1,8 @@
 <template lang="pug">
 .column
-  ToggleFilter(:options='filterOptions')
+  KT-ButtonToggle(v-model='filterModel'
+              :options='filterOptions')
+
   KT-SmartTable(v-if='result'
               :columns='tblColumns'
               :result='result'
@@ -12,19 +14,21 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import ToggleFilter from 'src/components/global/ToggleFilter.vue'
+
 import { useUser } from 'stores/user'
+import type { IFilterOption } from 'src/view-model'
 
 import cfg from 'src/config'
 
 const { result, loading, error } = cfg.providers.userTask.getUserTasks()
 
+const filterModel = ref('')
 
 // const splitter = ref(50)
 // const toggleFilter = ref("all")
-const filterOptions = [
+const filterOptions: IFilterOption[] = [
           {label: 'Все задачи', value: 'all'},
-          {label: 'Назначенные мне', value: 'toMe'},
+          {label: 'Назначенные мне', value: 'toMe', default: true},
           {label: 'Назначенные мной', value: 'fromMe'}
           ]
 

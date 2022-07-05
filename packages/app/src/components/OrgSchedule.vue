@@ -1,7 +1,7 @@
 <template lang='pug'>
 .row.flex-center.q-pb-md
   .col.text-center
-    ToggleFilters(v-model='filterModel'
+    KT-ButtonToggle(v-model='filterModel'
                  :options='filterOptions')
 
 
@@ -38,7 +38,6 @@ QCalendarScheduler(:view='filterModel'
 import { ref } from 'vue'
 import { date } from 'quasar'
 import * as dateUtils from 'src/utils/date'
-import ToggleFilters from 'src/components/global/ToggleFilter.vue'
 import { QCalendarScheduler, today } from '@quasar/quasar-ui-qcalendar/'
 import type { IFilterOption } from 'src/view-model'
 import cfg from 'src/config'

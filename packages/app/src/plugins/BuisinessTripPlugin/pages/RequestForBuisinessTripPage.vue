@@ -30,7 +30,7 @@ q-form(@submit='confirmDialog = true'
             q-separator(inset)
             q-card-section
               .row.justify-center
-                ToggleFilter(:options='compensationOptions',
+                KT-ButtonToggle(:options='compensationOptions',
                             v-model='model.compensationType'
                             :disable="!isFreeDaysInside()")
 
@@ -103,7 +103,6 @@ import cfg from 'src/config'
 import type { IRequestType, IBuisinessTripRequest } from '@kedo-team/data-model'
 import type { IDateRange, IFilterOption } from 'src/view-model'
 import RangeCalendar from 'src/components/global/RangeCalendar.vue'
-import ToggleFilter from 'src/components/global/ToggleFilter.vue'
 import OrgSchedule from 'src/components/OrgSchedule.vue'
 import RequestConfirmationDialog from 'src/components/RequestConfirmationDialog.vue'
 

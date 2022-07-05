@@ -49,7 +49,7 @@
             q-separator(inset)
             q-card-section
               .row.justify-center
-                ToggleFilter(:options='vacationType',
+                KT-ButtonToggle(:options='vacationType',
                             v-model='model.isPayed')
 
           q-card
@@ -98,7 +98,6 @@ import OrgSchedule from 'src/components/OrgSchedule.vue'
 import type { IRequestType, IVacationRequest } from '@kedo-team/data-model'
 import RangeCalendar from 'src/components/global/RangeCalendar.vue'
 import RequestConfirmationDialog from 'src/components/RequestConfirmationDialog.vue'
-import ToggleFilter from 'src/components/global/ToggleFilter.vue'
 import cfg from 'src/config'
 import type { IDateRange, IFilterOption } from 'src/view-model'
 
