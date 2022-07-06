@@ -33,14 +33,15 @@
 import { ref } from 'vue'
 import { getRoutes } from 'src/plugins/PluginManager'
 
-const routes = getRoutes()
+const routes = ref([])
+routes.value = await getRoutes()
+console.log(routes)
 const size = ref('md')
-
 const sizes: {[key: string]: string} = {
-  'xs': 'xs', 
-  's':  'sm', 
-  'm':  'md', 
-  'l':  'lg', 
+  'xs': 'xs',
+  's':  'sm',
+  'm':  'md',
+  'l':  'lg',
   'xl': 'xl'
 }
 
