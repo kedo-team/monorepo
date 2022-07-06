@@ -38,6 +38,13 @@ const widgets: IWidgetDefinition[] = [{
     imgUrl: 'https://picsum.photos/seed/seed11/80/60',
     component: () =>
         import('./widgets/MyActionableDocumentsWidget.vue')
+},
+{
+    name: 'Календарь подразделения',
+    description: 'Отпуска и командировки сотрудников моего подразделения',
+    imgUrl: 'https://picsum.photos/seed/seed13/80/60',
+    component: () =>
+        import('./widgets/OrgScheduleWidget.vue')
 }]
 
 export {

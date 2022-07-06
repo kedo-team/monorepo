@@ -1,14 +1,25 @@
 <template lang="pug">
-q-btn(@click='saveGraph') Показать граф
-#container.row
+//- q-btn(@click='saveGraph') Показать граф
+.kt-content-container
+  q-img.kt-under-construction(src='/under-construction.png' fit='fill'
+          width='200px'
+          height='200px')
+  #container.row
 </template>
 
-<style scoped lang="scss">
-#container {
-  width: 100%;
-  height: 500px;
-  display: block;
-}
+<style scoped lang="sass">
+#container
+  width: 100%
+  height: 500px
+  display: block
+
+.kt-content-container
+  position: relative
+
+.kt-under-construction
+  position: absolute
+  right: -10px
+
 </style>
 
 <script setup lang="ts">

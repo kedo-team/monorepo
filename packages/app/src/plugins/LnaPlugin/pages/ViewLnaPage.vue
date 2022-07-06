@@ -1,6 +1,9 @@
 <template lang="pug">
-h1 Просмотр ЛНА
-h5 {{ user.jwt }}
+.row.flex-center
+  .col-auto
+    q-img(src='/under-construction.png' fit='fill'
+          width='200px'
+          height='200px')
 </template>
 
 <style scoped lang="scss">

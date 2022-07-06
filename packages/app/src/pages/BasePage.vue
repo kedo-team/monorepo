@@ -18,9 +18,9 @@ q-page.main-page-content
       .paper3.paper
         .column.q-pa-xl.flex-center(v-if="route.meta.title")
           .text-h2.q-pb-lg.kt-page-header {{ route.meta.title }}
-            q-badge(align="top") i
-              q-tooltip(v-if="route.meta.description")
-                .text-h6 {{ route.meta.description }}
+            q-badge.kt-badge(align="top") i
+              q-tooltip.text-h6.kt-header-tooltip.shadow-4(v-if="route.meta.description" max-width="30rem")
+                | {{ route.meta.description }}
         .q-px-xl.q-pb-xl
           RouterView(v-slot='{ Component, route }')
             //- Transition(name='fade'
@@ -40,6 +40,8 @@ q-page.main-page-content
   text-transform: uppercase
   letter-spacing: 2px
   color: $kedo-text-main-color
+  .kt-badge
+    letter-spacing: 0
 .main-page-content
   background-color: $kedo-light-gray
 

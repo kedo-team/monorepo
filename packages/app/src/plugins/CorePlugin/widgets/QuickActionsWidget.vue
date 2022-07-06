@@ -36,7 +36,7 @@ import { getRoutes } from 'src/plugins/PluginManager'
 const routes = ref([])
 routes.value = await getRoutes()
 console.log(routes)
-const size = ref('md')
+const size = ref('sm')
 const sizes: {[key: string]: string} = {
   'xs': 'xs',
   's':  'sm',
