@@ -21,7 +21,7 @@ q-page.main-page-content
             q-badge(align="top") i
               q-tooltip(v-if="route.meta.description")
                 .text-h6 {{ route.meta.description }}
-        .q-pa-xl
+        .q-px-xl.q-pb-xl
           RouterView(v-slot='{ Component, route }')
             //- Transition(name='fade'
             //-            mode="out-in"):

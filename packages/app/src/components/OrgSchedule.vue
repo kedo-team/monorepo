@@ -1,21 +1,32 @@
 <template lang='pug'>
-.row.flex-center.q-pb-md
-  .col.text-center
+.row.justify-between.q-pb-md
+  //- .col-auto
+  //-   q-input(v-model='textFillterModel')
+  .col-auto.text-center
     KT-ButtonToggle(v-model='filterModel'
                  :options='filterOptions')
+  .col-auto
+    .row
+      q-btn-group(outline).kt-navigation
+        q-btn(outline @click='qcal.moveToToday()' icon='watch_later')
+        q-btn(outline @click='qcal.prev()' icon='navigate_before')
+        q-btn(outline @click='qcal.next()' icon='navigate_next')
 
-
+//- docs: https://qcalendar.netlify.app/developing/qcalendarscheduler/scheduler-getting-started
 QCalendarScheduler(:view='filterModel'
+                  v-model='selectedDate'
                   v-model:model-resources='result'
                   resource-key='id'
                   resource-label='firstName'
                   :resource-height="40"
-                  :resource-width='100'
                   :resource-min-height="40"
+                  :resource-width='200'
+                  :resource-min-width="200"
                   animated
                   bordered
                   locale='ru'
                   :weekdays='[1,2,3,4,5,6,0]'
+                  ref='qcal'
                 )
   //- template(#resource-row)
   //-   div.bg-red
@@ -23,15 +34,18 @@ QCalendarScheduler(:view='filterModel'
     template(v-for="(event, index) in getEvents(scope)"
             :key="index")
       q-badge(color="blue"
-              :label="event.status"
+              :label="getStrStatus(event.status)"
               :style="getStyle(scope, event)")
 
   //-----------------------------------------------------------
   template(#resource-label="{ scope: { resource } }")
-    KT-UserAvatar(:data='resource')
+    .col-12
+      KT-UserAvatar(:data='resource')
 </template>
 
 <style lang='sass'>
+.kt-navigation
+  color: lighten($kedo-text-main-color, 20%)
 </style>
 
 <script setup lang='ts'>
@@ -41,11 +55,13 @@ import * as dateUtils from 'src/utils/date'
 import { QCalendarScheduler, today } from '@quasar/quasar-ui-qcalendar/'
 import type { IFilterOption } from 'src/view-model'
 import cfg from 'src/config'
-import type { IVacation } from '@kedo-team/data-model'
+import type { IVacation, Status } from '@kedo-team/data-model'
 
 
 const {result, loading, error} = cfg.providers.unitVacation.getUnitsVacation()
-
+const qcal = ref(null)
+const textFillterModel = ref<string>(null)
+console.log(qcal)
 const filterOptions: IFilterOption[] = [
   {
     label: 'Неделя',
@@ -59,6 +75,7 @@ const filterOptions: IFilterOption[] = [
 ]
 
 const filterModel = ref('week')
+const selectedDate = ref(today())
 
 function getEvents (scope: any): IVacation[] {
   const vacations: IVacation[] = scope.resource.vacationsList;
@@ -120,6 +137,14 @@ function  getStyle (scope: any, event: IVacation) {
         left: getEventLeft(scope, event),
         width: getEventWidth(scope, event)
       }
+}
+
+function getStrStatus (status: Status) {
+  switch (status) {
+    case 'IN_PROGRESS': return 'Ожидает согласоваия'
+    case 'APPROVED': return 'Согласован'
+    default: "?"
+  }
 }
 
 </script>

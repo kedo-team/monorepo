@@ -1,8 +1,14 @@
 <template lang="pug">
+.row.justify-end
+  .col-auto
+    q-btn(flat @click='schedule_visibility = !schedule_visibility'
+          :label="getScheduleBtnLabel(schedule_visibility)")
+
 .column.justify-center
   .col.q-pb-md
-    q-card: q-card-section
-      OrgSchedule
+     q-slide-transition
+        q-card(v-show='schedule_visibility'): q-card-section
+          OrgSchedule
 
 q-form(@submit='confirmDialog = true'
        greedy)
@@ -159,4 +165,8 @@ async function submitRequest() {
   cfg.providers.buisinessTrip.sendRequest(req)
 }
 
+const schedule_visibility = ref(true)
+function getScheduleBtnLabel(isVisible: boolean): string {
+  return isVisible ? 'скрыть календарь' : 'показать календарь'
+}
 </script>
