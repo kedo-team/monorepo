@@ -1,26 +1,62 @@
 <template lang="pug">
 q-list
-  q-expansion-item.kedo-expansion(v-for='roleDef in roleDefinitions'
-                                  v-bind='roleDef'
-                                  default-opened
-                                  header-class="kedo-menu-expansion-header")
-    div.nav-link-container(v-for='route in getAppRoleRoutes(roleDef.role)')
-        q-btn.navigator-links(:label='route.meta.title'
-                              :to='route.path'
-                              :icon='route.meta.icon'
-                               flat
-                               padding="xs")
+  template(v-for='roleDef in roleDefinitions')
+    q-item-label
+      .row.q-pa-lg.text-h6.kt-menu-header
+        //- .col-2: q-icon(:name='roleDef.icon')
+        .col {{ roleDef.label }}
+
+        .kedo-expansion(v-for='roleDef in roleDefinitions'
+                                      v-bind='roleDef'
+                                      default-opened
+                                      header-class="kedo-menu-expansion-header")
+    template(v-for='route in getAppRoleRoutes(roleDef.role)')
+      q-item.kt-menu-element.q-pl-xl
+        router-link(:to='route.path') #[q-icon(:name='route.meta.icon')] {{ route.meta.title }}
+
+        //- q-btn.navigator-links(:label='route.meta.title'
+        //-                       :to='route.path'
+        //-                       :icon='route.meta.icon'
+        //-                       no-caps
+        //-                       flat
+        //-                       padding="xs")
+        //- div.nav-link-container(v-for='route in getAppRoleRoutes(roleDef.role)')
+        //-     q-btn.navigator-links(:label='route.meta.title'
+        //-                           :to='route.path'
+        //-                           :icon='route.meta.icon'
+        //-                             flat
+        //-                             padding="xs")
 
 </template>
 
-<style scoped lang="scss">
-.spacer {
-  width: 12px
-}
-.nav-link-container {
-  margin-left: 24px;
-  color: $kedo-dark-background-text;
-}
+<style scoped lang="sass">
+.kt-menu-header
+  color: $kedo-text-main-color
+  text-transform: uppercase
+  font-size: 0.9rem
+
+
+.kt-menu-element
+  position: relative
+
+.kt-menu-element a
+  color: lighten($kedo-text-main-color, 20%)
+  text-decoration: none
+
+.kt-menu-element a:before
+  content: '\203A'
+  font-weight: bold
+  font-size: 20px
+  line-height: 1rem
+  position: absolute
+  opacity: 0
+  left: 0
+  transition: left .15s, opacity .15s
+.kt-menu-element a:hover:before
+  opacity: 1
+  left: 1.25em
+
+
 </style>
 
 <script setup lang="ts">

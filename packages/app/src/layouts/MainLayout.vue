@@ -11,13 +11,17 @@ q-layout(view='hhh Lpr lFf')
       q-btn(flat round dense)
         q-icon(name="more_vert")
         UserMenu(@global-action="onGlobalAction")
-  q-drawer.bg-primary(v-model='leftDrawerOpen' show-if-above bordered elevated)
+  q-drawer.kt-drawer(v-model='leftDrawerOpen' show-if-above)
     Suspense(timeout="0")
       LeftDrawerMenu
   q-page-container
     router-view
 
 </template>
+<style lang='sass'>
+.kt-drawer
+  background-color: $kedo-light-gray
+</style>
 
 <script setup lang="ts">
 import { ref } from 'vue';

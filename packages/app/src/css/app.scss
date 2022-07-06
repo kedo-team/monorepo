@@ -1,8 +1,11 @@
+@use 'kedo-team';
+
 // app global css in SCSS form
 /////////////////////////////////////////////
 // text color on header
 header.q-header {
     color: $kedo-dark-background-text;
+    background-color: $kedo-light-gray;
 }
 
 // style of group header at the left menu
