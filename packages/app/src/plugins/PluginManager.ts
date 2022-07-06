@@ -11,7 +11,7 @@ const plugins = cfg.plugins
 
 const widgets: IWidget[] = []
 
-const modulePromises = [
+const modulePromises: Promise<IPluginDefinition>[] = [
     import('src/plugins/CorePlugin'),
     import('src/plugins/PayslipsPlugin'),
     import('src/plugins/RequestForVacationPlugin'),
@@ -27,7 +27,7 @@ const routesPromise = new Promise<IRouteRecord[]>((resolve, reject) => {
     Promise.all(modulePromises)
     .then(modules => {
         const allRoutes: IRouteRecord[] = []
-        modules.forEach(m => {
+        modules.forEach((m) => {
             if (m.routes)
                 allRoutes.push(...m.routes)
         })
@@ -35,36 +35,21 @@ const routesPromise = new Promise<IRouteRecord[]>((resolve, reject) => {
     })
 })
 
+const widgetPromise = new Promise<IWidgetDefinition[]>((resolve, reject)=>{
+    Promise.all(modulePromises)
+    .then(modules => {
+        const allWidgets: IWidgetDefinition[] = []
+        modules.forEach( (m) => {
+            if (m.widgets)
+               allWidgets.push(...m.widgets)
+        })
+        resolve(allWidgets)
+    })
+})
 
-// Promise.all(plugins.map(path => {
-//     // here the sample from vite for inspiration
-//     // https://vitejs.dev/guide/features.html#glob-import
-//     return (() => import(/* @vite-ignore */path))()
-// })).then(modules => {
-//     modules.forEach(m => {
-//         if (m.routes) {
-//             routes.push(...m.routes)
-//         }
 
-//         if (m.widgets) {
-//             const widgetDefinition = m.widgets.map((w: IWidgetDefinition) => { return {
-//                 name: w.name,
-//                 description: w.description,
-//                 imgUrl: w.imgUrl,
-//                 component: defineAsyncComponent({
-//                     loader: w.component,
-//                     loadingComponent: LoadingComponent,
-//                     errorComponent: ErrorWidget
-//                 })
-//             }})
-
-//             widgets.push(...widgetDefinition)
-//         }
-//     })
-// })
-
-export function getWidgetList() : IWidget[] {
-    return widgets;
+export async function getWidgetList() : Promise<IWidgetDefinition[]> {
+    return widgetPromise;
 }
 
 export async function getRoutes(): Promise<IRouteRecord[]> {
@@ -85,8 +70,8 @@ export interface IWidget extends Omit<IWidgetDefinition, 'component'>{
 export interface IPluginDefinition {
     name: string,
     description: string,
-    routes: RouteRecordRaw[],
-    widgets: IWidgetDefinition[]
+    routes?: IRouteRecord[],
+    widgets?: IWidgetDefinition[]
 }
 
 export type IRouteRecord = RouteRecordRaw & {

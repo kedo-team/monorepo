@@ -1,10 +1,9 @@
-import { IWidgetDefinition } from '../PluginManager'
-import { RouteRecordRaw } from 'vue-router'
+import { IRouteRecord, IWidgetDefinition } from '../PluginManager'
 
 const name = 'Core Plugin'
 const description = 'core features'
 
-const routes: RouteRecordRaw[] = [{
+const routes: IRouteRecord[] = [{
         path: 'tasks',
         component: () => import('./pages/TaskPage.vue'),
         meta: {
@@ -32,6 +31,13 @@ const widgets: IWidgetDefinition[] = [{
     imgUrl: 'https://picsum.photos/seed/seed13/80/60',
     component: () =>
         import('./widgets/QuickActionsWidget.vue')
+},
+{
+    name: 'Мои документы',
+    description: 'Документы, требующие моей реакции',
+    imgUrl: 'https://picsum.photos/seed/seed11/80/60',
+    component: () =>
+        import('./widgets/MyActionableDocumentsWidget.vue')
 }]
 
 export {
