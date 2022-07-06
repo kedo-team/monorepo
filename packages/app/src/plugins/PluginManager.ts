@@ -11,7 +11,17 @@ const plugins = cfg.plugins
 
 const widgets: IWidget[] = []
 
-const modulePromises = plugins.map(path => import(path))
+const modulePromises = [
+    import('src/plugins/CorePlugin'),
+    import('src/plugins/PayslipsPlugin'),
+    import('src/plugins/RequestForVacationPlugin'),
+    import('src/plugins/CertificatesPlugin'),
+    import('src/plugins/LnaPlugin'),
+    import('src/plugins/CompanyStructurePlugin'),
+    import('src/plugins/ApprovementEditorPlugin'),
+    import('src/plugins/BuisinessTripPlugin')
+]
+// plugins.map(path => import(path))
 
 const routesPromise = new Promise<IRouteRecord[]>((resolve, reject) => {
     Promise.all(modulePromises)

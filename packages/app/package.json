@@ -1,6 +1,6 @@
 {
   "name": "@kedo-team/app",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "HRA app for your greate employees",
   "productName": "kedo-lks",
   "author": "atolk <antontolkachev@gmail.com>",
@@ -9,6 +9,8 @@
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
+    "build": "quasar build",
+    "publish": "scp -r ./dist/spa/* storage:/storage/demo-app/html",
     "start:dev": "quasar dev"
   },
   "dependencies": {

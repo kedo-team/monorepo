@@ -21,12 +21,21 @@ onMounted(() => {
     cy = cytoscape({
         container: document.getElementById('container'),
         elements: graph,
+        layout: 'circle',
         style: [ // the stylesheet for the graph
             {
-            selector: 'node',
+                selector: '#start, #finish',
+                style: {
+                    shape: 'diamond',
+                    'background-color': 'gray',
+                    'label': 'Старт'
+                }
+            },
+            {
+            selector: 'node[label!=""]',
             style: {
-                'background-color': '#666',
-                'label': 'data(id)'
+                'background-color': 'green',
+                'label': 'data(title)'
             }
             },
 
@@ -48,28 +57,25 @@ onMounted(() => {
 
 const graph = [ // list of graph elements to start with
     { // node a
-      data: { id: 'start',}
+      data: { id: 'start'}
     },
     { // node b
-      data: { id: 'b' }
+      data: { id: 'atolk', title: 'Антон Толкачев' }
     },
     { // node c
-      data: { id: 'c' }
+      data: { id: 'lera', title: 'Валерия Толкачева' }
     },
     { // node a
-      data: { id: 'finish',}
+      data: { id: 'finish'}
     },
     { // edge ab
-      data: { id: 'start-b', source: 'start', target: 'b' }
+      data: { id: 'start-lera', source: 'start', target: 'lera' }
     },
     {
-      data: {id: 'start-c', source: 'start', target: 'c'}
+      data: {id: 'lera-atolk', source: 'lera', target: 'atolk'}
     },
     {
-      data: {id: 'b-finish', source: 'b', target: 'finish'}
-    },
-    {
-      data: {id: 'c-finish', source: 'c', target: 'finish'}
+      data: {id: 'atolk-finish', source: 'atolk', target: 'finish'}
     }
   ]
 
