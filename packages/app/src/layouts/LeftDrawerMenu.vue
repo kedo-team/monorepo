@@ -11,25 +11,17 @@ q-list
                                       default-opened
                                       header-class="kedo-menu-expansion-header")
     template(v-for='route in getAppRoleRoutes(roleDef.role)')
-      q-item.kt-menu-element.q-pl-xl
+      q-item.kt-menu-element.q-pl-xl.items-center(:class='{"kt-active-menu":isCurrentRoute(currentRoute.path, route.path)}')
         router-link(:to='route.path') #[q-icon(:name='route.meta.icon')] {{ route.meta.title }}
-
-        //- q-btn.navigator-links(:label='route.meta.title'
-        //-                       :to='route.path'
-        //-                       :icon='route.meta.icon'
-        //-                       no-caps
-        //-                       flat
-        //-                       padding="xs")
-        //- div.nav-link-container(v-for='route in getAppRoleRoutes(roleDef.role)')
-        //-     q-btn.navigator-links(:label='route.meta.title'
-        //-                           :to='route.path'
-        //-                           :icon='route.meta.icon'
-        //-                             flat
-        //-                             padding="xs")
 
 </template>
 
 <style scoped lang="sass">
+.kt-active-menu
+  background-color: darken($kedo-background-light-gray, 10%)
+  border-radius: 1.5em
+  transition: background-color 2s
+
 .kt-menu-header
   color: $kedo-text-main-color
   text-transform: uppercase
@@ -60,15 +52,23 @@ q-list
 </style>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { ref } from 'vue'
 import { getRoutes } from '../plugins/PluginManager'
 import type { IRouteRecord } from '../plugins/PluginManager';
 import type { IUserRole } from '@kedo-team/data-model'
 
-const allRoutes = await getRoutes();
+const allRoutes = ref([])
+allRoutes.value = await getRoutes();
 
 function getAppRoleRoutes(role: IUserRole):IRouteRecord[] {
-  const filteredRoutes = allRoutes.filter(r => r.meta.role == role)
+  const filteredRoutes = allRoutes.value.filter(r => r.meta.role == role)
   return filteredRoutes
+}
+
+const currentRoute = useRoute()
+function isCurrentRoute(routerPath: string, menuPath: string): boolean {
+  return routerPath.includes(menuPath)
 }
 
 interface IRoleDefinition {
@@ -92,48 +92,4 @@ const roleDefinitions: IRoleDefinition[] = [{
   icon: 'manage_accounts'
 }]
 
-const linksList = [
-  {
-    title: 'Заявление на отпуск',
-    caption: 'quasar.dev',
-    icon: 'self_improvement',
-    link: '/request-for-vacation'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
 </script>

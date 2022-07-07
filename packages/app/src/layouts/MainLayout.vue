@@ -1,6 +1,6 @@
 <template lang="pug">
 q-layout(view='hhh Lpr lFf')
-  q-header(elevated)
+  q-header(elevated reveal)
     q-toolbar
       q-btn(flat dense round icon='menu' aria-label='Menu' @click='toggleLeftDrawer')
       .spacer

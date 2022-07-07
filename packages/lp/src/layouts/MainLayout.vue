@@ -22,10 +22,13 @@ q-layout(view='hHh Lpr lFf')
                     :icon='link.icon'
                     :to='link.link'
                     ) {{ link.title }}
+        q-btn.kt-demo-button(color='red'
+                             href='https://demo.kedo-team.ru'
+                             target='_blank') ДЕМО
 
   q-drawer(v-model='leftDrawerOpen'
             bordered)
-  
+
     q-list
       EssentialLink(
         v-for='link in linksList'
@@ -34,12 +37,14 @@ q-layout(view='hHh Lpr lFf')
 
   q-page-container
     router-view
-  
+
   q-footer
     BlockFooter
-  
+
 </template>
 <style lang="sass">
+.kt-demo-button
+  min-width: 100px
 .logo
   max-width:64px
 .header

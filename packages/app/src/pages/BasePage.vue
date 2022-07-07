@@ -1,7 +1,7 @@
 <template lang="pug">
 q-page.main-page-content
   .row.q-pa-md(v-if="route.meta.title")
-    q-breadcrumbs.breadcrumbs
+    q-breadcrumbs.kt-breadcrumbs
       q-breadcrumbs-el.home(label="Домой"
                       to="/"
                       icon="home"
@@ -81,7 +81,8 @@ q-page.main-page-content
   margin-left: -100%
   z-index: 1
 
-.breadcrumbs
+.kt-breadcrumbs
+  z-index: 1
   color: $kedo-dark-background-text
   .home
     color: $kedo-dark-background

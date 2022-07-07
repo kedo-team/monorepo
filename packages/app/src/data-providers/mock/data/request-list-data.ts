@@ -1,3 +1,4 @@
+import anton from './user-anton'
 export default [
   {
     'id': 'b46b93b6-3d10-4f4d-ab37-8c88d3f28342',
@@ -5,14 +6,7 @@ export default [
     'ownerUserId': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
     'requestTypeName': 'VACATION',
     'status': 'IN_PROGRESS',
-    'ownerUser': {
-      'avatarUrl': 'https://cdn.quasar.dev/img/boy-avatar.png',
-      'email': 'anton@kedo-team.ru',
-      'firstName': 'Антон',
-      'id': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
-      'lastName': 'Толкачев',
-      'phone': '+7 (906) 757-78-26'
-    },
+    'ownerUser': anton,
     'payload': {
       'dateTo': '2022/06/07',
       'isPayed': true,
@@ -40,14 +34,7 @@ export default [
     ]
   },
   {
-    'ownerUser': {
-      'avatarUrl': 'https://cdn.quasar.dev/img/boy-avatar.png',
-      'email': 'anton@kedo-team.ru',
-      'firstName': 'Антон',
-      'id': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
-      'lastName': 'Толкачев',
-      'phone': '+7 (906) 757-78-26'
-    },
+    'ownerUser': anton,
     'createdAt': '2022-06-20T14:40:18.85272',
     'id': 'd3c1d564-b55a-42ea-86cc-0b44446cf821',
     'ownerUserId': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
@@ -80,14 +67,7 @@ export default [
     ]
   },
   {
-    'ownerUser': {
-      'avatarUrl': 'https://cdn.quasar.dev/img/boy-avatar.png',
-      'email': 'anton@kedo-team.ru',
-      'firstName': 'Антон',
-      'id': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
-      'lastName': 'Толкачев',
-      'phone': '+7 (906) 757-78-26'
-    },
+    'ownerUser':anton,
     'createdAt': '2022-06-20T14:42:48.335879',
     'id': 'df81401b-68f8-4b10-8ed2-43de80f463f2',
     'ownerUserId': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
