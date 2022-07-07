@@ -1,13 +1,13 @@
 <template lang="pug">
 q-page.main-page-content
-  .row.q-pa-md(v-if="meta.title")
+  .row.q-pa-md(v-if="route.meta.title")
     q-breadcrumbs.breadcrumbs
       q-breadcrumbs-el.home(label="Домой"
                       to="/"
                       icon="home"
                       color="primary")
-      q-breadcrumbs-el(:label='meta.title'
-                        :icon='meta.icon')
+      q-breadcrumbs-el(:label='getTitle'
+                        :icon='getIcon')
 
 
   //- .page-content.q-pa-lg
@@ -16,11 +16,11 @@ q-page.main-page-content
       #paper1.paper
       #paper2.paper
       .paper3.paper
-        .column.q-pa-xl.flex-center(v-if="meta.title")
-          .text-h2.q-pb-lg.kt-page-header {{ meta.title }}
+        .column.q-pa-xl.flex-center(v-if="route.meta.title")
+          .text-h2.q-pb-lg.kt-page-header {{ getTitle }}
             q-badge.kt-badge(align="top") i
-              q-tooltip.text-h6.kt-header-tooltip.shadow-4(v-if="meta.description" max-width="30rem")
-                | {{ meta.description }}
+              q-tooltip.text-h6.kt-header-tooltip.shadow-4(v-if="route.meta.description" max-width="30rem")
+                | {{ route.meta.description }}
         .q-px-xl.q-pb-xl
           RouterView(v-slot='{ Component, route }')
             //- Transition(name='fade'
@@ -89,11 +89,12 @@ q-page.main-page-content
 </style>
 
 <script setup lang="ts">
-
-import type { IRouteMeta } from 'src/plugins/PluginManager';
 import { useRoute } from 'vue-router'
+import { computed } from 'vue'
 
 
-const meta = useRoute().meta as IRouteMeta
+const route = useRoute()
+const getTitle = computed<string>(() => route.meta.title as string )
+const getIcon = computed<string>(() => route.meta.icon as string )
 
 </script>
