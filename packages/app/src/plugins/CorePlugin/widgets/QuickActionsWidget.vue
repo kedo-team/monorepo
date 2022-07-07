@@ -31,9 +31,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { getRoutes } from 'src/plugins/PluginManager'
+import { getRoutes, type IRouteRecord } from 'src/plugins/PluginManager'
 
-const routes = ref([])
+const routes = ref<IRouteRecord[]>([])
 routes.value = await getRoutes()
 console.log(routes)
 const size = ref('sm')

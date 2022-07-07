@@ -1,5 +1,5 @@
 import { defineAsyncComponent } from 'vue'
-import { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw, RouteMeta } from 'vue-router'
 import  LoadingComponent from '../components/LoadingComponent.vue'
 import  ErrorWidget from '../components/ErrorWidget.vue'
 import cfg from 'src/config'
@@ -74,11 +74,13 @@ export interface IPluginDefinition {
     widgets?: IWidgetDefinition[]
 }
 
+export interface IRouteMeta extends RouteMeta {
+    title?: string
+    description?: string
+    icon: string
+    role: IUserRole
+}
+
 export type IRouteRecord = RouteRecordRaw & {
-    meta: {
-        title?: string
-        description?: string
-        icon?: string,
-        role: IUserRole
-    }
+    meta: IRouteMeta
 }
