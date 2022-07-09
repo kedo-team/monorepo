@@ -1,3 +1,4 @@
+import cfg from 'src/config'
 import { IRouteRecord, IWidgetDefinition } from '../PluginManager'
 
 const name = 'Core Plugin'
@@ -7,10 +8,11 @@ const routes: IRouteRecord[] = [{
         path: 'tasks',
         component: () => import('./pages/TaskPage.vue'),
         meta: {
-            title: 'Мои задачи',
-            description: 'Список задач, инициированных мной на согласование, и назначенных мне',
+            title: 'Мне на согласование',
+            description: 'Заявки сотрудников, требующие моего согласования',
             icon: 'fact_check',
-            role: 'app_user'
+            role: 'app_head',
+            count: cfg.providers.userTask.getCount()
         }
     },
     {
@@ -20,7 +22,8 @@ const routes: IRouteRecord[] = [{
             title: 'Мои заявки',
             description: 'Заявки, направленные мной',
             icon: 'stars',
-            role: 'app_user'
+            role: 'app_user',
+            isRequest: true
         }
     }
 ]

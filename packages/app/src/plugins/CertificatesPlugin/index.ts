@@ -10,7 +10,8 @@ const routes: IRouteRecord[] = [{
         title: 'Запрос справок',
         description: 'Справки направляются в кадровую службу и возвращаются вам обратно в личный кабинет.',
         icon: 'article',
-        role: 'app_user'
+        role: 'app_user',
+        isRequest: true
     }
 }]
 

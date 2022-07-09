@@ -1,4 +1,5 @@
 import { defineAsyncComponent } from 'vue'
+import type { Ref } from 'vue'
 import type { RouteRecordRaw, RouteMeta } from 'vue-router'
 import  LoadingComponent from '../components/LoadingComponent.vue'
 import  ErrorWidget from '../components/ErrorWidget.vue'
@@ -79,6 +80,8 @@ export interface IRouteMeta extends RouteMeta {
     description?: string
     icon: string
     role: IUserRole
+    isRequest?: boolean
+    count?: Ref<number>
 }
 
 export type IRouteRecord = RouteRecordRaw & {

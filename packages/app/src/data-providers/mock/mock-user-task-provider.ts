@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import { ITaskViewModel } from 'src/view-model';
 import { IUserTaskDataProvider } from 'src/data-providers/interfaces'
 import { IDataProviderResult } from '../interfaces/common';
@@ -33,5 +33,9 @@ export class MockUserTaskDataProvider implements IUserTaskDataProvider {
       task.actionAt = Date()
       res(true)
     })
+  }
+
+  getCount(): Ref<number> {
+    return ref(this.result.value.length)
   }
 }
