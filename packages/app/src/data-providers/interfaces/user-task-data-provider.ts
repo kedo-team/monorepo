@@ -3,4 +3,6 @@ import { IDataProviderResult } from './common'
 
 export interface IUserTaskDataProvider {
   getUserTasks(): IDataProviderResult<ITaskViewModel[]>
+  approveTask(id: string): Promise<boolean>
+  rejectTask(id: string):  Promise<boolean>
 }

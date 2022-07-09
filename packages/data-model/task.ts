@@ -6,6 +6,7 @@ export interface ITask {
   requestId: string
   authorUserId: string
   assignedToUserId: string
-  status: string
+  status: Status
+  actionAt?: string
   order: number
 }

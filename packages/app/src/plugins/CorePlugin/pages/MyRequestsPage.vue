@@ -1,11 +1,11 @@
 <template lang="pug">
-.column
-  KT-ButtonToggle(v-model='toggleFilter'
-                  :options='toggleOptions')
+.column.items-center
+  .col.q-pb.md:  KT-ButtonToggle(v-model='toggleFilter'
+                    :options='toggleOptions')
   //- TODO: Вот эту проверку нужно отсюда убрать. И все объекты возвращаемые apollo перенести в SmartTable
   //- TODO: все объекты возвращаемые apollo перенести в SmartTable
   //- TODO: Как-то нужно выводить типы и таблицы из query
-  KT-SmartTable(v-if='result'
+  .col-auto: KT-SmartTable(v-if='result'
                 :columns='columns'
                 :columnsDefinition='columnDefinition'
                 :templateDefinition='templateDefinition'
