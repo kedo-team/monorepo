@@ -23,6 +23,9 @@ export const useUser = defineStore('userStore', {
     },
     id: (state) => {
       return state._auth.getSubject()
+    },
+    current: (state) => {
+      return state._auth.currentUser;
     }
   },
 

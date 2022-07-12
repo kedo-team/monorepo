@@ -1,7 +1,7 @@
-import type { Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
 
 export interface IDataProviderResult<T> {
-  result: Ref<T>,
+  result: Ref<T> | ComputedRef<T>,
   loading: Ref<boolean>,
   error: Ref<string | null>
 }

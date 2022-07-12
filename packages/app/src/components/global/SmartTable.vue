@@ -2,13 +2,15 @@
 q-table(v-if='result'
         :columns = 'resColDef',
         :rows="result"
+        :loading='loading'
         row-key='id'
         v-on='eventModel'
         )
 
     //- LOADING
-    template(#loading)
-      q-inner-loading(showing color="primary")
+    //- template(#loading)
+    //-   div -- {{ loading }} --
+    //-   q-inner-loading(showing color="primary")
 
     template(v-for='template in resTmplDef'
             #[`body-cell-${template.slot}`]='props')

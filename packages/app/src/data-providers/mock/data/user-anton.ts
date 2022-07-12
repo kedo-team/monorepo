@@ -1,6 +1,6 @@
-import { IUser } from '@kedo-team/data-model'
+import { IUserViewModel } from 'src/view-model'
 
-const user: IUser =
+const user: IUserViewModel =
 {
   'avatarUrl': 'https://cdn.quasar.dev/img/boy-avatar.png',
   'email': 'anton@kedo-team.ru',

@@ -4,7 +4,8 @@ import type { IUserTaskDataProvider,
               IPayslipDataProvider,
               IBuisinessTripDataProvider,
               ICompanyUnitDataProvider,
-              IAuthProvider} from 'src/data-providers/interfaces'
+              IAuthProvider,
+              IUserDataProvider} from 'src/data-providers/interfaces'
 import { KeyCloakAuthProvider } from 'src/data-providers/Keycloak-auth-provider'
 import { MockVacationDataProvider,
          MockUserTaskDataProvider,
@@ -12,7 +13,8 @@ import { MockVacationDataProvider,
          MockPayslipDataProvider,
          MockBuisinessTripProvider,
          MockCompanyUnitProvider,
-         MockAuthProvider} from 'src/data-providers/mock'
+         MockAuthProvider,
+         MockUserDataProvider} from 'src/data-providers/mock'
 
 // singleton
 class AppConfig implements IAppConfig {
@@ -26,7 +28,8 @@ class AppConfig implements IAppConfig {
               payslip: new MockPayslipDataProvider(),
               buisinessTrip: new MockBuisinessTripProvider(),
               companyUnit: new MockCompanyUnitProvider(),
-              auth: new MockAuthProvider()
+              auth: new MockAuthProvider(),
+              user: new MockUserDataProvider()
               // auth: new KeyCloakAuthProvider({
               //   url:      import.meta.env.VITE_OIDC_URL,
               //   realm:    import.meta.env.VITE_OIDC_URL_REALM,
@@ -54,6 +57,7 @@ interface IAppConfig {
     buisinessTrip: IBuisinessTripDataProvider
     companyUnit: ICompanyUnitDataProvider
     auth: IAuthProvider
+    user: IUserDataProvider
   }
 
   plugins: string[]

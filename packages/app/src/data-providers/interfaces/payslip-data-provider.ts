@@ -3,4 +3,5 @@ import { IDataProviderResult } from './common';
 
 export interface IPayslipDataProvider {
   getPayslips(): IDataProviderResult<IPayslipViewModel[]>
+  setViewed(id: string): Promise<void>
 }

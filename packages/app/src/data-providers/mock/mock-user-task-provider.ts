@@ -1,21 +1,18 @@
-import { Ref, ref } from 'vue'
-import { ITaskViewModel } from 'src/view-model';
+import { isRef, ref, reactive, unref, watch, computed } from 'vue'
+import type { Ref } from 'vue'
 import { IUserTaskDataProvider } from 'src/data-providers/interfaces'
-import { IDataProviderResult } from '../interfaces/common';
 import data from './data/tasks'
-import type { Status } from '@kedo-team/data-model';
-export class MockUserTaskDataProvider implements IUserTaskDataProvider {
-  private result  = ref(data)
-  private loading = ref(false)
-  private error   = ref(null)
+import type { Status } from '@kedo-team/data-model'
+import { reactiveFuncWrapper } from './reactive-func-wrapper'
+import { useUser } from 'src/stores/user'
 
-  getUserTasks(): IDataProviderResult<ITaskViewModel[]> {
-    return {
-      result: this.result,
-      loading: this.loading,
-      error: this.error
-    }
-  }
+export class MockUserTaskDataProvider implements IUserTaskDataProvider {
+  public tasks = reactive(data)
+
+  getUserCurrentTasks = reactiveFuncWrapper(()=>{
+    const user = useUser()
+    return this.tasks.filter(t => t.status == 'IN_PROGRESS' && t.assignedToUserId == user.current.id)
+  })
 
   async approveTask(id: string): Promise<boolean> {
     return this.doAction(id, 'APPROVED')
@@ -25,9 +22,9 @@ export class MockUserTaskDataProvider implements IUserTaskDataProvider {
     return this.doAction(id, 'REJECTED')
   }
 
-  async doAction(id: string, actionName: Status): Promise<boolean> {
+  private async doAction(id: string, actionName: Status): Promise<boolean> {
     return new Promise<boolean>((res, rej) => {
-      const task = this.result.value.find(task => task.id === id)
+      const task = this.tasks.find(task => task.id === id)
       if (!task) rej('task not found')
       task.status = actionName
       task.actionAt = Date()
@@ -35,7 +32,9 @@ export class MockUserTaskDataProvider implements IUserTaskDataProvider {
     })
   }
 
-  getCount(): Ref<number> {
-    return ref(this.result.value.length)
-  }
+  getCount = computed(()=>this.getUserCurrentTasks().result.value.length)
+
+  getUserCompletedTasks = reactiveFuncWrapper(()=>
+    this.tasks.filter(t => t.status == 'APPROVED' || t.status == 'REJECTED')
+  )
 }

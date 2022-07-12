@@ -1,11 +1,8 @@
 <template lang="pug">
 .column.items-center
-  .col.q-pb.md:  KT-ButtonToggle(v-model='toggleFilter'
+  .col.q-pb-md:  KT-ButtonToggle(v-model='toggleFilter'
                     :options='toggleOptions')
-  //- TODO: Вот эту проверку нужно отсюда убрать. И все объекты возвращаемые apollo перенести в SmartTable
-  //- TODO: все объекты возвращаемые apollo перенести в SmartTable
-  //- TODO: Как-то нужно выводить типы и таблицы из query
-  .col-auto: KT-SmartTable(v-if='result'
+  .col-auto: KT-SmartTable(
                 :columns='columns'
                 :columnsDefinition='columnDefinition'
                 :templateDefinition='templateDefinition'
@@ -18,48 +15,43 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { QTableColumnDefinition, SlotTemplateDefinition } from 'src/quasar'
-// import RequestAll from './queries/Request.all.graphql'
-// import RequestDone from './queries/Request.done.graphql'
-// import RequestInProgress from './queries/Request.undone.graphql'
 import cfg from 'src/config'
-import type { IFilterOption } from 'src/view-model'
+import type { IFilterOption, IStatusViewModel } from 'src/view-model'
 
 const columns = ['createdAt', 'status']
 const columnDefinition: QTableColumnDefinition[] = [{
-            name: 'requestTypeName',
-            align: 'center',
-            label: 'Описание',
-            field: 'requestTypeName',
-            format: (val, row) => row
-}]
+  name: 'requestTypeName',
+  align: 'center',
+  label: 'Описание',
+  field: 'requestTypeName',
+  format: (val, row) => row
+},
+{
+  name: 'tasksList',
+  align: 'center',
+  label: 'Состояние согласования',
+  field: 'tasksList'
+}
+]
 
 const templateDefinition: SlotTemplateDefinition[] = [{
     slot: 'requestTypeName',
     component: 'KT-RequestTitle'
-}]
-// const columnDefinition =
+},
+{
+  slot: 'tasksList',
+  component: 'KT-RequestWorflowTasks'
+
+}
+]
 
 const toggleOptions: IFilterOption[] = [
-          {label: 'Все', value: 'all'},
-          {label: 'Выполненные', value: 'done'},
-          {label: 'Текущие невыполненные', value: 'in_progress', default:true}
+          {label: 'Текущие в работе', value: 'IN_PROGRESS', default:true},
+          {label: 'Выполненные', value: 'COMPLETED'},
           ]
 
-const toggleFilter = ref('all')
+const toggleFilter = ref<IStatusViewModel>('IN_PROGRESS')
 
-const { result, loading, error } = cfg.providers.request.getUserRequests()
-
-// function getQuery(filter: any): DocumentNode {
-//   switch(filter.value) {
-//     case 'all': return RequestAll;
-//     case 'done': return RequestDone;
-//     case 'in_porgress': return RequestInProgress;
-//     default: return RequestAll;
-//   }
-// }
-
-// const { result, loading, error} = useQuery(
-//                                     () => { return getQuery(toggleFilter) }
-//                                  )
+const { result, loading, error } = cfg.providers.request.getUserRequests(toggleFilter)
 
 </script>

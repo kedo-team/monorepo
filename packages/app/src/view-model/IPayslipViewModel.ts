@@ -1,5 +1,5 @@
 import { IPayslip } from "@kedo-team/data-model";
 
-export interface IPayslipViewModel extends IPayslip { 
-
+// eslint-disable-next-line
+export interface IPayslipViewModel extends IPayslip {
 }

@@ -2,7 +2,7 @@
 .column.items-center
   .col.q-pb-md:  KT-ButtonToggle(v-model='filterModel'
                 :options='filterOptions')
-  .col: KT-SmartTable(v-if='result'
+  .col: KT-SmartTable(
                 :columns='tblColumns'
                 :result='result'
                 :loading='loading'
@@ -16,24 +16,20 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import type { IFilterOption, IRequestViewModel, ITaskViewModel } from 'src/view-model'
+import type { IFilterOption, ITaskViewModel, IStatusViewModel } from 'src/view-model'
 import cfg from 'src/config'
 import { useQuasar } from 'quasar'
 
-const { result, loading, error } = cfg.providers.userTask.getUserTasks()
 
-const filterModel = ref('')
+const filterModel = ref<IStatusViewModel>('IN_PROGRESS')
 
-// const splitter = ref(50)
-// const toggleFilter = ref("all")
 const filterOptions: IFilterOption[] = [
-          {label: 'Все задачи', value: 'all'},
-          {label: 'Назначенные мне', value: 'toMe', default: true},
-          {label: 'Назначенные мной', value: 'fromMe'}
+  {label: 'В работе', value: 'IN_PROGRESS', default: true},
+          {label: 'Закрытые', value: 'COMPLETED'}
           ]
 
-
 const tblColumns = ['createdAt', 'authorUser', 'status', 'assignedToUser', 'requestTitle', 'approveReject']
+const { result, loading, error } = cfg.providers.userTask.getUserCurrentTasks()
 
 async function taskApprove(task: ITaskViewModel) {
   const res = await confirmOperation('approve', task)
@@ -66,7 +62,10 @@ async function confirmOperation(action: 'approve' | 'reject', task: ITaskViewMod
                 color: 'negative'
             }
         })
-        .onOk(() => res(true))
+        .onOk(() => {
+          res(true)
+          q.notify(`Задача ${action === 'approve' ? "Согласована" : "Отклонена"}`)
+        })
         .onCancel(()=> res(false))
   })
 }

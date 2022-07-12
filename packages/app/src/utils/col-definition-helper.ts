@@ -1,4 +1,4 @@
-import { date } from 'quasar'
+import { formatRuDate } from './date'
 // TODO: Как это сделать без импорта? И есть ли реальная двойная загрузка .d.ts
 import type { QTableColumnDefinition, SlotTemplateDefinition } from 'src/quasar'
 import { datei18n } from './quasar-i18n'
@@ -16,14 +16,14 @@ function getQTableColumnDefinition(colnames: string[]): QTableColumnDefinition[]
         const col = {...{name, field: name, label: name}, ...columns[name].column}
         return col;
     })
-    return retValue;  
+    return retValue;
 }
 
 function getQTableTemplateDefinition(colnames: string[]): SlotTemplateDefinition[] {
     const retValue: SlotTemplateDefinition[] = []
-    
+
     colnames.forEach(name => {
-        if (columns[name] !== undefined && 
+        if (columns[name] !== undefined &&
             columns[name].template !== undefined) {
                 retValue.push({
                     slot: columns[name].template!.slot ?? name,
@@ -72,7 +72,8 @@ const columns: QTableDefinitions = {
             required: true,
             label: 'Дата создания',
             align: 'left',
-            format: (val: string) =>  date.formatDate(val, 'DD MMM YY, ddd\nHH:mm', datei18n),
+            sortOrder: 'da',
+            format: (val: string) =>  formatRuDate(val),
             sortable: true
         },
         // template: {
@@ -90,21 +91,21 @@ const columns: QTableDefinitions = {
             component: 'KT-ButtonDownload'
         }
     },
-    isViewed: { 
+    isViewed: {
         column: {
             align: 'left',
             label: 'Просмотрен?',
         },
         template: {
             component: 'KT-IsViewed'
-        }    
+        }
     },
     requestTitle: {
         column: {
             align: 'center',
             label: 'Описание',
             field: 'request',
-            
+
         },
         template: {
             component: 'KT-RequestTitle'
@@ -132,7 +133,7 @@ const columns: QTableDefinitions = {
         }
     },
     title: {
-        column: { 
+        column: {
             align: 'left',
             label: 'Заголовок',
         },

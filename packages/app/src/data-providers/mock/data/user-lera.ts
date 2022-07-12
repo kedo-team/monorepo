@@ -1,6 +1,6 @@
-import { IUser } from '@kedo-team/data-model'
+import { IUserViewModel } from 'src/view-model'
 
-const user: IUser =
+const user: IUserViewModel =
 {
   'avatarUrl': 'https://avataaars.io/?avatarStyle=Transparent&topType=LongHairBob&accessoriesType=Blank&hairColor=Blonde&facialHairType=Blank&clotheType=Hoodie&clotheColor=PastelBlue&eyeType=Default&eyebrowType=UpDown&mouthType=Smile&skinColor=Light',
   'email': 'lera@kedo-team.ru',

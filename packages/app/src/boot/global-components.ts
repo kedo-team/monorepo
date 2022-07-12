@@ -8,6 +8,7 @@ import IsViewed from 'src/components/global/IsViewed.vue'
 import SmartTable from 'src/components/global/SmartTable.vue'
 import WorkflowInstanceString from 'src/components/global/WorkflowInstanceString.vue'
 import ButtonToggle from 'src/components/global/ButtonToggle.vue'
+import RequestWorflowTasks from 'src/components/global/RequestWorflowTasks.vue'
 
 export default boot(async ({ app }) => {
     app.component('KT-UserAvatar',     UserAvatar)
@@ -19,4 +20,5 @@ export default boot(async ({ app }) => {
        .component('KT-SmartTable',     SmartTable)
        .component('KT-WorkflowInstanceString', WorkflowInstanceString)
        .component('KT-ButtonToggle',     ButtonToggle)
+       .component('KT-RequestWorflowTasks',     RequestWorflowTasks)
 });

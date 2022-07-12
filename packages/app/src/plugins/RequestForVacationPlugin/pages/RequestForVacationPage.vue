@@ -30,9 +30,9 @@
                   | #[br] #[b на сегодня]
                 q-separator
                 q-card-section.flex.flex-center(style="fontSize: 24px")
-                  div(v-if='vacBalance.loading.value')
-                    q-spinner-tail
-                  div(v-if='vacBalance.result.value') {{ vacBalance.result }}
+                  //- div(v-if='vacBalance.loading.value')
+                  //-   q-spinner-tail
+                  div(v-if='vacBalance') {{ vacBalance }}
             .col: q-card
                 q-card-section.text-center Остаток дней отпуска
                   | #[br] #[b на {{ dateUtils.formatRuDate(dateRangeModel.dateFrom) }}]
@@ -123,9 +123,11 @@ const model = reactive({
   comment: ''
 })
 
-const vacBalance = cfg.providers.unitVacation.getVacationBalance()
+const vacProvider = cfg.providers.unitVacation
+const reqProvider = cfg.providers.request
+const vacBalance = vacProvider.getVacationBalance
 const firstVacaltionDate = ref('')
-const vacFuturetureBalance = cfg.providers.unitVacation.getVacationBalanceOnDate(firstVacaltionDate)
+const vacFuturetureBalance = vacProvider.getVacationBalanceOnDate(firstVacaltionDate)
 
 watch(dateRangeModel, newVal => {
   firstVacaltionDate.value = newVal.dateFrom
@@ -144,7 +146,7 @@ function submitRequest(e) {
     comment: model.comment,
     payload: { ...unref(dateRangeModel), ...{isPayed: model.isPayed}}
   }
-  cfg.providers.unitVacation.sendVacationRequest(request)
+  reqProvider.registerRequest(request)
 }
 
 const schedule_visibility = ref(true)

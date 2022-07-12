@@ -1,9 +1,9 @@
-import { IVacationRequest } from '@kedo-team/data-model'
+import type { IVacationRequest, Status } from '@kedo-team/data-model'
 
 
 export class RequestDTO implements IVacationRequest {
     id: string;
-    status: string;
+    status: Status;
     createdAt: string;
     comment: string;
     ownerUserId: string

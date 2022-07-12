@@ -12,7 +12,7 @@ const routes: IRouteRecord[] = [{
             description: 'Заявки сотрудников, требующие моего согласования',
             icon: 'fact_check',
             role: 'app_head',
-            count: cfg.providers.userTask.getCount()
+            count: cfg.providers.userTask.getCount
         }
     },
     {

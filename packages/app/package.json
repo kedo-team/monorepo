@@ -8,7 +8,8 @@
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
-    "test": "echo \"No test specified\" && exit 0",
+    "test:open": "peeky open",
+    "test": "peeky run",
     "build": "quasar build",
     "publish": "scp -r ./dist/spa/* storage:/storage/demo-app/html",
     "start:dev": "quasar dev"
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@intlify/vite-plugin-vue-i18n": "^3.3.1",
+    "@peeky/test": "^0.13.5",
     "@quasar/app-vite": "^1.0.0-alpha.0",
     "@quasar/quasar-app-extension-apollo": "next",
     "@quasar/quasar-app-extension-qcalendar": "next",

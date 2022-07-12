@@ -6,6 +6,8 @@
     "moduleResolution": "Node",
     "module": "ES2020",
     "typeRoots": ["./src/@types"],
+    "types":["@peeky/test"],
+    "esModuleInterop": true, // Necessary for 'expect' typing to work
     "composite": true,
     "baseUrl": ".",
     "paths": {
