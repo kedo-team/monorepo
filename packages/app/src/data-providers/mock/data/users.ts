@@ -2,6 +2,7 @@ import type { IUserViewModel } from 'src/view-model'
 
 const data: IUserViewModel[] = [
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "rhoncus.id@mail.ru",
     "firstName": "Lana",
@@ -10,6 +11,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (949) 866-32-39"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "suscipit.est@mail.ru",
     "firstName": "Demetrius",
@@ -18,6 +20,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (996) 313-88-81"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "morbi@yandex.ru",
     "firstName": "Brock",
@@ -26,6 +29,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (962) 727-37-81"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "metus.eu@mail.ru",
     "firstName": "Francis",
@@ -34,6 +38,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (985) 244-28-96"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "ipsum.phasellus.vitae@ya.ru",
     "firstName": "Madeson",
@@ -42,6 +47,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (914) 764-73-19"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "lorem.luctus@yandex.ru",
     "firstName": "Kibo",
@@ -50,6 +56,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (932) 951-55-56"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "aliquet.vel@yandex.ru",
     "firstName": "Rogan",
@@ -58,6 +65,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (980) 647-87-34"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "iaculis.aliquet.diam@vk.ru",
     "firstName": "Austin",
@@ -66,6 +74,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (919) 719-96-28"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "amet.nulla.donec@mail.ru",
     "firstName": "Len",
@@ -74,6 +83,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (919) 146-46-18"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "tempor.lorem@vk.ru",
     "firstName": "Iona",
@@ -82,6 +92,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (974) 849-50-32"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "suspendisse.ac.metus@vk.ru",
     "firstName": "Fritz",
@@ -90,6 +101,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (955) 514-64-63"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "imperdiet.ornare@ya.ru",
     "firstName": "Jolene",
@@ -98,6 +110,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (984) 152-01-81"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "amet.orci@yandex.ru",
     "firstName": "Branden",
@@ -106,6 +119,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (924) 244-96-52"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "tincidunt.donec.vitae@yandex.ru",
     "firstName": "Octavius",
@@ -114,6 +128,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (966) 981-78-37"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "iaculis.nec@mail.ru",
     "firstName": "Charde",
@@ -122,6 +137,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (981) 477-78-29"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "purus.ac@vk.ru",
     "firstName": "Avye",
@@ -130,6 +146,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (916) 542-64-31"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "nec.ante.maecenas@vk.ru",
     "firstName": "Remedios",
@@ -138,6 +155,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (965) 252-13-30"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "est@ya.ru",
     "firstName": "Violet",
@@ -146,6 +164,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (974) 239-86-78"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "nibh.donec@ya.ru",
     "firstName": "Todd",
@@ -154,6 +173,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (968) 953-74-62"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "eu.odio@yandex.ru",
     "firstName": "Lillith",
@@ -162,6 +182,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (912) 151-38-43"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "dolor.egestas.rhoncus@vk.ru",
     "firstName": "Montana",
@@ -170,6 +191,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (938) 760-86-14"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "diam.pellentesque@yandex.ru",
     "firstName": "Alana",
@@ -178,6 +200,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (981) 327-79-24"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "ornare.fusce@vk.ru",
     "firstName": "Wylie",
@@ -186,6 +209,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (914) 433-31-63"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "urna.suscipit@vk.ru",
     "firstName": "Colby",
@@ -194,6 +218,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (975) 863-95-24"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "aenean@vk.ru",
     "firstName": "Joan",
@@ -202,6 +227,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (926) 257-66-61"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "ipsum.suspendisse@ya.ru",
     "firstName": "Lars",
@@ -210,6 +236,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (947) 134-93-83"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "tempus.risus@ya.ru",
     "firstName": "Zachary",
@@ -218,6 +245,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (989) 637-66-37"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "non.justo.proin@yandex.ru",
     "firstName": "Galena",
@@ -226,6 +254,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (904) 100-38-43"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "metus@mail.ru",
     "firstName": "Gary",
@@ -234,6 +263,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (988) 054-88-65"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "duis.risus.odio@yandex.ru",
     "firstName": "Keely",
@@ -242,6 +272,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (983) 176-26-45"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "nec.eleifend@yandex.ru",
     "firstName": "Owen",
@@ -250,6 +281,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (973) 317-67-11"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "gravida.praesent.eu@ya.ru",
     "firstName": "Coby",
@@ -258,6 +290,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (923) 231-63-19"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "cras.eu@vk.ru",
     "firstName": "Imani",
@@ -266,6 +299,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (984) 740-52-45"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "eu.metus@vk.ru",
     "firstName": "Ina",
@@ -274,6 +308,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (945) 688-42-27"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "porttitor.vulputate.posuere@mail.ru",
     "firstName": "Mufutau",
@@ -282,6 +317,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (931) 748-54-69"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "enim.non.nisi@ya.ru",
     "firstName": "Roth",
@@ -290,6 +326,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (941) 477-32-49"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "metus@mail.ru",
     "firstName": "Preston",
@@ -298,6 +335,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (901) 422-58-72"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "libero@yandex.ru",
     "firstName": "Charde",
@@ -306,6 +344,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (922) 183-57-37"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "tempus@mail.ru",
     "firstName": "Daniel",
@@ -314,6 +353,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (961) 979-26-09"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "eget.lacus@yandex.ru",
     "firstName": "Dillon",
@@ -322,6 +362,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (961) 993-72-18"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "morbi.sit@ya.ru",
     "firstName": "Alden",
@@ -330,6 +371,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (958) 825-58-61"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "accumsan.convallis@yandex.ru",
     "firstName": "Callum",
@@ -338,6 +380,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (951) 307-21-58"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "sagittis.augue.eu@yandex.ru",
     "firstName": "Benedict",
@@ -346,6 +389,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (947) 256-41-34"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "nulla.interdum@ya.ru",
     "firstName": "Griffith",
@@ -354,6 +398,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (934) 182-44-18"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "massa@ya.ru",
     "firstName": "Yoshio",
@@ -362,6 +407,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (942) 814-04-64"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "sapien.nunc.pulvinar@yandex.ru",
     "firstName": "Xander",
@@ -370,6 +416,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (928) 892-69-33"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "mollis@yandex.ru",
     "firstName": "Camden",
@@ -378,6 +425,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (928) 767-02-25"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "augue.eu.tempor@yandex.ru",
     "firstName": "Bianca",
@@ -386,6 +434,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (984) 188-73-60"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "magnis@mail.ru",
     "firstName": "Kaitlin",
@@ -394,6 +443,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (933) 208-26-87"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "venenatis.vel@mail.ru",
     "firstName": "Stephanie",
@@ -402,6 +452,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (931) 322-18-74"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "est.ac.mattis@vk.ru",
     "firstName": "Austin",
@@ -410,6 +461,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (950) 295-33-13"
   },
   {
+    "role": 'app_admin',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "anton@kedo-team.ru",
     "firstName": "Антон",
@@ -418,6 +470,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (906) 757-78-26"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "rutrum@mail.ru",
     "firstName": "Lucian",
@@ -426,6 +479,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (901) 154-68-84"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "sed.neque.sed@vk.ru",
     "firstName": "Brian",
@@ -434,6 +488,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (900) 235-75-56"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "ligula@mail.ru",
     "firstName": "Uta",
@@ -442,6 +497,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (996) 428-48-64"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "mollis@mail.ru",
     "firstName": "Gloria",
@@ -450,6 +506,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (950) 035-37-67"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "mi@vk.ru",
     "firstName": "Ali",
@@ -458,6 +515,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (946) 240-82-72"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "vitae.dolor@ya.ru",
     "firstName": "Calvin",
@@ -466,6 +524,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (991) 123-63-84"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "vivamus@ya.ru",
     "firstName": "Dean",
@@ -474,6 +533,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (994) 135-35-45"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "a.auctor@mail.ru",
     "firstName": "Stephen",
@@ -482,6 +542,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (948) 698-35-80"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "penatibus@yandex.ru",
     "firstName": "Amena",
@@ -490,6 +551,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (996) 258-02-96"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "non.bibendum@yandex.ru",
     "firstName": "Xanthus",
@@ -498,6 +560,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (941) 333-58-41"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "quis@ya.ru",
     "firstName": "Henry",
@@ -506,6 +569,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (973) 433-70-13"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "tellus.justo@ya.ru",
     "firstName": "Lester",
@@ -514,6 +578,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (985) 796-17-17"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "vestibulum.ante@mail.ru",
     "firstName": "Tamekah",
@@ -522,6 +587,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (965) 672-25-77"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "egestas.sed.pharetra@yandex.ru",
     "firstName": "Asher",
@@ -530,6 +596,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (988) 181-76-45"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "lorem.auctor.quis@yandex.ru",
     "firstName": "Sandra",
@@ -538,6 +605,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (976) 034-91-43"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "nisl@yandex.ru",
     "firstName": "Jerome",
@@ -546,6 +614,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (917) 029-21-61"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "turpis.egestas@vk.ru",
     "firstName": "Teegan",
@@ -554,6 +623,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (968) 697-83-57"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "accumsan.neque@ya.ru",
     "firstName": "Arden",
@@ -562,6 +632,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (919) 151-13-38"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "malesuada.vel.convallis@yandex.ru",
     "firstName": "Alexander",
@@ -570,6 +641,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (957) 353-11-55"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "sodales.elit@vk.ru",
     "firstName": "Keiko",
@@ -578,6 +650,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (961) 548-52-16"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "nunc@vk.ru",
     "firstName": "Tatyana",
@@ -586,6 +659,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (937) 047-62-63"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "sed@mail.ru",
     "firstName": "Zephania",
@@ -594,6 +668,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (938) 645-65-24"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "porttitor.scelerisque@vk.ru",
     "firstName": "Wilma",
@@ -602,6 +677,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (998) 803-51-72"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "turpis.egestas.fusce@yandex.ru",
     "firstName": "Lilah",
@@ -610,6 +686,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (910) 815-67-41"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "et.nunc@ya.ru",
     "firstName": "Elton",
@@ -618,6 +695,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (954) 764-62-33"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "amet.consectetuer.adipiscing@yandex.ru",
     "firstName": "Barclay",
@@ -626,6 +704,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (941) 181-76-18"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "ad.litora.torquent@mail.ru",
     "firstName": "Fletcher",
@@ -634,6 +713,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (950) 464-51-13"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "enim@mail.ru",
     "firstName": "Martha",
@@ -642,6 +722,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (951) 542-40-11"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "libero.lacus.varius@mail.ru",
     "firstName": "Vera",
@@ -650,6 +731,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (936) 637-97-60"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "donec@vk.ru",
     "firstName": "Jeremy",
@@ -658,6 +740,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (991) 105-21-49"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "magna.sed.dui@ya.ru",
     "firstName": "Jonas",
@@ -666,6 +749,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (986) 101-82-88"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "maecenas@mail.ru",
     "firstName": "Kylie",
@@ -674,6 +758,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (935) 663-82-33"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "pede.nonummy.ut@yandex.ru",
     "firstName": "Erich",
@@ -682,6 +767,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (911) 123-14-34"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "risus.quisque@mail.ru",
     "firstName": "Joseph",
@@ -690,6 +776,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (925) 220-84-38"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "ligula.nullam@yandex.ru",
     "firstName": "Jarrod",
@@ -698,6 +785,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (926) 665-31-46"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "tellus.sem.mollis@yandex.ru",
     "firstName": "Ocean",
@@ -706,6 +794,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (932) 461-50-16"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "aliquam.gravida@yandex.ru",
     "firstName": "Suki",
@@ -714,6 +803,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (992) 087-25-13"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "sociis.natoque@yandex.ru",
     "firstName": "Eleanor",
@@ -722,6 +812,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (944) 386-59-37"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "taciti.sociosqu.ad@ya.ru",
     "firstName": "Blake",
@@ -730,6 +821,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (971) 414-81-05"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "dolor@mail.ru",
     "firstName": "Melyssa",
@@ -738,6 +830,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (962) 385-26-29"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "aenean.eget@mail.ru",
     "firstName": "Autumn",
@@ -746,6 +839,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (941) 271-23-60"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "sed@vk.ru",
     "firstName": "Daphne",
@@ -754,6 +848,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (971) 426-48-86"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "suspendisse@mail.ru",
     "firstName": "Timothy",
@@ -762,6 +857,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (984) 466-53-67"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "duis.at@yandex.ru",
     "firstName": "Gregory",
@@ -770,6 +866,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (914) 182-56-82"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "lorem.ipsum@mail.ru",
     "firstName": "Jerome",
@@ -778,6 +875,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (914) 811-97-11"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "dolor@yandex.ru",
     "firstName": "Omar",
@@ -786,6 +884,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (989) 781-44-61"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "libero.lacus.varius@yandex.ru",
     "firstName": "Genevieve",
@@ -794,6 +893,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (919) 023-24-43"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
     "email": "nibh@mail.ru",
     "firstName": "Autumn",
@@ -802,6 +902,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (927) 767-13-03"
   },
   {
+    "role": 'app_head',
     "avatarUrl": "https://cdn.quasar.dev/img/avatar2.jpg",
     "email": "lera@kedo-team.ru",
     "firstName": "Лера",
@@ -810,6 +911,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (926) 168-46-65"
   },
   {
+    "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/avatar6.jpg",
     "email": "anya@kedo-team.ru",
     "firstName": "Аня",

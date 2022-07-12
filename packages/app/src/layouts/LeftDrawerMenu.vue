@@ -8,7 +8,7 @@ mixin menu-item
             transparent) {{ route.meta.count }}
 
 q-list
-  template(v-for='roleDef in roleDefinitions')
+  template(v-for='roleDef in getUserRoles')
     q-item-label
       .row.q-pl-lg.q-pt-lg.text-h6.kt-menu-header
         //- .col-2: q-icon(:name='roleDef.icon')
@@ -69,6 +69,8 @@ import { ref } from 'vue'
 import { getRoutes } from '../plugins/PluginManager'
 import type { IRouteRecord } from '../plugins/PluginManager';
 import type { IUserRole } from '@kedo-team/data-model'
+import { computed } from '@vue/reactivity';
+import { useUser } from 'src/stores/user'
 
 const allRoutes = ref([])
 allRoutes.value = await getRoutes();
@@ -89,6 +91,17 @@ interface IRoleDefinition {
   label: string
   icon: string
 }
+
+const user = useUser()
+const getUserRoles = computed(()=>{
+  switch(user.current.value.role)
+  {
+    case 'app_admin': return roleDefinitions;
+    case 'app_head' : return roleDefinitions.filter(r => r.role !== 'app_admin')
+    default: return roleDefinitions.filter(r => r.role === 'app_user')
+  }
+})
+
 const roleDefinitions: IRoleDefinition[] = [{
   role: 'app_user',
   label: 'Я как сотрудник',

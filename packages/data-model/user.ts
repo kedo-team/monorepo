@@ -1,3 +1,5 @@
+import { IUserRole } from './user-roles'
+
 export interface IUser {
   id: string
   firstName: string
@@ -5,4 +7,5 @@ export interface IUser {
   lastName: string
   avatarUrl: string
   phone: string
+  role: IUserRole
 }
