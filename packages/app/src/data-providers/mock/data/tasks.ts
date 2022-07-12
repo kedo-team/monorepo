@@ -1,6 +1,5 @@
 import { ITaskViewModel } from 'src/view-model'
-import anton from './user-anton'
-import lera from './user-lera'
+import { user2, user1 } from './users'
 
 const data: ITaskViewModel[] = [
   {
@@ -11,8 +10,8 @@ const data: ITaskViewModel[] = [
       'authorUserId': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
       'assignedToUserId': 'ce2d1e62-a324-4a8f-bc03-a9ee14f652b3',
       'requestId': 'b46b93b6-3d10-4f4d-ab37-8c88d3f28342',
-      'assignedToUser': lera,
-     'authorUser': anton,
+      'assignedToUser': user2,
+     'authorUser': user1,
     'request': {
       'id': 'b46b93b6-3d10-4f4d-ab37-8c88d3f28342',
       'requestTypeName': 'VACATION',
@@ -35,8 +34,8 @@ const data: ITaskViewModel[] = [
     'authorUserId': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
     'assignedToUserId': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
     'requestId': 'df81401b-68f8-4b10-8ed2-43de80f463f2',
-    'assignedToUser': anton,
-    'authorUser': anton,
+    'assignedToUser': user1,
+    'authorUser': user1,
     'request': {
       'id': 'df81401b-68f8-4b10-8ed2-43de80f463f2',
       'requestTypeName': 'VACATION',
@@ -57,10 +56,10 @@ const data: ITaskViewModel[] = [
     'status': 'PENDING',
     'order': 1,
     'authorUserId': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
-    'assignedToUserId': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
+    'assignedToUserId': user1.id,
     'requestId': 'b46b93b6-3d10-4f4d-ab37-8c88d3f28342',
-    'assignedToUser': anton,
-    'authorUser': anton,
+    'assignedToUser': user1,
+    'authorUser': user1,
     'request': {
       'id': 'b46b93b6-3d10-4f4d-ab37-8c88d3f28342',
       'requestTypeName': 'VACATION',
@@ -83,8 +82,8 @@ const data: ITaskViewModel[] = [
     'authorUserId': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
     'assignedToUserId': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
     'requestId': 'd3c1d564-b55a-42ea-86cc-0b44446cf821',
-    'assignedToUser': anton,
-    'authorUser': anton,
+    'assignedToUser': user1,
+    'authorUser': user1,
     'request': {
       'id': 'd3c1d564-b55a-42ea-86cc-0b44446cf821',
       'requestTypeName': 'VACATION',
@@ -107,8 +106,8 @@ const data: ITaskViewModel[] = [
     'authorUserId': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
     'assignedToUserId': 'ce2d1e62-a324-4a8f-bc03-a9ee14f652b3',
     'requestId': 'df81401b-68f8-4b10-8ed2-43de80f463f2',
-    'assignedToUser': lera,
-    'authorUser': anton,
+    'assignedToUser': user2,
+    'authorUser': user1,
     'request': {
       'id': 'df81401b-68f8-4b10-8ed2-43de80f463f2',
       'requestTypeName': 'VACATION',
@@ -131,8 +130,8 @@ const data: ITaskViewModel[] = [
     'authorUserId': 'ae0cdf8a-92fe-4f28-b99b-2f8e947a8b47',
     'assignedToUserId': 'ce2d1e62-a324-4a8f-bc03-a9ee14f652b3',
     'requestId': 'd3c1d564-b55a-42ea-86cc-0b44446cf821',
-    'assignedToUser': lera,
-    'authorUser': anton,
+    'assignedToUser': user2,
+    'authorUser': user1,
     'request': {
       'id': 'd3c1d564-b55a-42ea-86cc-0b44446cf821',
       'requestTypeName': 'VACATION',

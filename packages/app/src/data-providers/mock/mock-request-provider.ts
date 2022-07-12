@@ -1,15 +1,12 @@
 import { IRequestDataProvider } from 'src/data-providers/interfaces'
 import data from './data/request-list-data'
-import { reactive } from 'vue'
-import type { Ref } from 'vue'
+import { reactive, unref } from 'vue'
 import type { IApprovementRoute, IRequest, IRequestType } from '@kedo-team/data-model';
-import anton from './data/user-anton'
-import lera from './data/user-lera'
 import { reactiveFuncWrapper } from './reactive-func-wrapper';
 import { IRequestViewModel, IStatusViewModel, ITaskViewModel } from 'src/view-model';
 import { useUser } from 'src/stores/user';
-import { routes } from 'src/plugins/CorePlugin';
-import { request } from 'http';
+import { user2, user1 } from './data/users'
+
 import cfg from 'src/config';
 
 export class MockRequestDataProvider implements IRequestDataProvider {
@@ -17,11 +14,11 @@ export class MockRequestDataProvider implements IRequestDataProvider {
 
   getUserRequests = reactiveFuncWrapper(
     (status: IStatusViewModel) => {
-      const user = useUser()
+      const currentUserId = unref(useUser().current).id
       const filter = (req: IRequestViewModel) => status == 'COMPLETED' ?
+                            (req.status == 'APPROVED' || req.status == 'REJECTED') && (req.ownerUserId == currentUserId) :
+                            req.status == 'IN_PROGRESS' && (req.ownerUserId == currentUserId)
 
-                            (req.status == 'APPROVED' || req.status == 'REJECTED') && (req.ownerUserId == user.current.id) :
-                            req.status == 'IN_PROGRESS' && (req.ownerUserId == user.current.id)
       return this.userRequests.filter(filter)
     }
   )
@@ -31,25 +28,30 @@ export class MockRequestDataProvider implements IRequestDataProvider {
       return null
     }
 
-    return [lera, anton]
+    const currentEmail = unref(useUser().current).email
+    switch(currentEmail) {
+      case user2.email: return [user1]
+      case user1.email: return []
+      default: return [user2, user1]
+    }
   }
 
   async registerRequest(request: IRequest): Promise<IRequest> {
     const user = useUser()
     return new Promise((res, rej) => {
-      const route = this.getApprovementRoute(request.requestTypeName)
-      const tasks = this.generateTasks(route, request)
       const reqVM: IRequestViewModel = {
         ...request,
         id: this.generateUUID(),
-        ownerUserId: user.current.id,
-        ownerUser: user.current,
+        ownerUserId: user.current.value.id,
+        ownerUser: user.current.value,
         status: 'IN_PROGRESS',
         createdAt: (new Date()).toISOString(),
-        tasksList: [],
+        tasksList: []
       }
+      const route = this.getApprovementRoute(request.requestTypeName)
+      const tasks = this.generateTasks(route, reqVM)
+      reqVM.tasksList = tasks
       this.userRequests.push(reqVM)
-      console.log('pushed', this.userRequests)
       res(request)
     })
   }
@@ -62,8 +64,8 @@ export class MockRequestDataProvider implements IRequestDataProvider {
       }
       const task: ITaskViewModel = {
         id: this.generateUUID(),
-        authorUser: user.current,
-        authorUserId: user.current.id,
+        authorUser: user.current.value,
+        authorUserId: user.current.value.id,
         assignedToUserId: entity.id,
         assignedToUser: entity,
         createdAt: (new Date()).toISOString(),

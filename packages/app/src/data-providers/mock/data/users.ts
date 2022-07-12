@@ -1,3 +1,5 @@
+import type { IUserViewModel } from 'src/view-model'
+
 const data: IUserViewModel[] = [
   {
     "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
@@ -800,7 +802,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (927) 767-13-03"
   },
   {
-    "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
+    "avatarUrl": "https://cdn.quasar.dev/img/avatar2.jpg",
     "email": "lera@kedo-team.ru",
     "firstName": "Лера",
     "id": "ce2d1e62-a324-4a8f-bc03-a9ee14f652b3",
@@ -808,7 +810,7 @@ const data: IUserViewModel[] = [
     "phone": "+7 (926) 168-46-65"
   },
   {
-    "avatarUrl": "https://cdn.quasar.dev/img/boy-avatar.png",
+    "avatarUrl": "https://cdn.quasar.dev/img/avatar6.jpg",
     "email": "anya@kedo-team.ru",
     "firstName": "Аня",
     "id": "97ee528f-812f-4f2a-a52b-64c278398871",
@@ -816,4 +818,10 @@ const data: IUserViewModel[] = [
     "phone": "+7 (953) 783-79-17"
   }
 ]
+
+const user1 = data.find(u => u.email=='anton@kedo-team.ru')
+const user2 = data.find(u => u.email=='lera@kedo-team.ru')
+const user3 = data.find(u => u.email=='anya@kedo-team.ru')
+
 export default data
+export { user1, user2, user3 }

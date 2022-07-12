@@ -25,7 +25,7 @@ export const useUser = defineStore('userStore', {
       return state._auth.getSubject()
     },
     current: (state) => {
-      return state._auth.currentUser;
+      return state._auth.current;
     }
   },
 

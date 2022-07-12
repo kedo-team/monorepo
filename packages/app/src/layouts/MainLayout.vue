@@ -8,6 +8,7 @@ q-layout(view='hhh Lpr lFf')
         q-img(src="/logo-title.png")
       q-toolbar-title {{ app_title }}
       q-space
+      KT-UserAvatar(:data='user.current.value')
       q-btn(flat round dense)
         q-icon(name="more_vert")
         UserMenu(@global-action="onGlobalAction")
@@ -36,8 +37,9 @@ function toggleLeftDrawer () {
       leftDrawerOpen.value = !leftDrawerOpen.value
 }
 
-const user = useUser();
+const user = useUser()
 function onGlobalAction() {
   user.isLayoutInEditMode = true;
 }
+
 </script>
