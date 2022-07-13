@@ -1,24 +1,17 @@
 import { boot } from 'quasar/wrappers'
-import UserAvatar from 'src/components/global/UserAvatar.vue'
-import ButtonDownload from 'src/components/global/ButtonDownload.vue'
-import IssueStatus from 'src/components/global/IssueStatus.vue'
-import ApproveReject from 'src/components/global/ApproveReject.vue'
-import RequestTitle from 'src/components/global/RequestTitle.vue'
-import IsViewed from 'src/components/global/IsViewed.vue'
-import SmartTable from 'src/components/global/SmartTable.vue'
-import WorkflowInstanceString from 'src/components/global/WorkflowInstanceString.vue'
-import ButtonToggle from 'src/components/global/ButtonToggle.vue'
-import RequestWorflowTasks from 'src/components/global/RequestWorflowTasks.vue'
+import { defineAsyncComponent } from 'vue'
 
 export default boot(async ({ app }) => {
-    app.component('KT-UserAvatar',     UserAvatar)
-       .component('KT-ButtonDownload', ButtonDownload)
-       .component('KT-IssueStatus',    IssueStatus)
-       .component('KT-ApproveReject',  ApproveReject)
-       .component('KT-RequestTitle',   RequestTitle)
-       .component('KT-IsViewed',       IsViewed)
-       .component('KT-SmartTable',     SmartTable)
-       .component('KT-WorkflowInstanceString', WorkflowInstanceString)
-       .component('KT-ButtonToggle',     ButtonToggle)
-       .component('KT-RequestWorflowTasks',     RequestWorflowTasks)
-});
+    // docs: https://vitejs.dev/guide/features.html#glob-import
+    const componentModules = import.meta.glob('src/components/global/*.vue')
+    const regExp = /.*\/(\w+).vue/i
+    for (const path in componentModules) {
+        const matches = regExp.exec(path)
+        if (matches[1]) {
+            const cmpName = matches[1]
+            // docs: https://vuejs.org/guide/components/async.html#basic-usage
+            app.component(`KT-${cmpName}`,
+                         defineAsyncComponent(componentModules[path]))
+        }
+    }
+})
