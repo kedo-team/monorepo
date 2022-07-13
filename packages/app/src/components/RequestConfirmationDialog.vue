@@ -28,8 +28,10 @@ q-dialog(v-model='modelValue'
 
 </template>
 <script setup lang='ts'>
-import type { IRequestType } from '@kedo-team/data-model';
-import cfg from 'src/config';
+import { ref, computed } from 'vue'
+import type { IRequestType } from '@kedo-team/data-model'
+import { useUser } from 'src/stores/user'
+import cfg from 'src/config'
 
 
 const props = defineProps<{
@@ -48,8 +50,14 @@ function cancel() {
 
 function submit() {
   emit("update:modelValue", false)
-   emit("confirmed")
+  emit("confirmed")
 }
 
-const approvementRoute = cfg.providers.request.getApprovementRoute(props.requestType)
+const user = useUser()
+const reqProvider = cfg.providers.request
+const approvementRoute = computed(()=>{
+  const id = user.id
+  return reqProvider.getApprovementRoute(props.requestType)
+})
+
 </script>

@@ -12,6 +12,7 @@
     "test": "peeky run",
     "build": "quasar build",
     "publish": "scp -r ./dist/spa/* storage:/storage/demo-app/html",
+    "build_publish": "yarn build && yarn publish",
     "start:dev": "quasar dev"
   },
   "dependencies": {

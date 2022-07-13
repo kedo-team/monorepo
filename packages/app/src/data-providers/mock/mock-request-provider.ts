@@ -29,6 +29,7 @@ export class MockRequestDataProvider implements IRequestDataProvider {
     }
 
     const currentEmail = unref(useUser().current).email
+    console.log('currentEmail', currentEmail)
     switch(currentEmail) {
       case user2.email: return [user1]
       case user1.email: return []

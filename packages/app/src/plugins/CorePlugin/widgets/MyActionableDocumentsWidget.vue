@@ -54,7 +54,7 @@ import cfg from 'src/config';
 let shortName = "Документы мне на подпись";
 let description = "Большое и длинное описание нового виджета Мои документы";
 
-const { result, loading, error } = cfg.providers.userTask.getUserTasks()
+const { result, loading, error } = cfg.providers.userTask.getUserCurrentTasks()
 const tblColumns = ['createdAt', 'authorUser', 'status', 'requestTitle', 'approveReject']
 
 function getLocalDate(val: string): string {

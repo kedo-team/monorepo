@@ -11,7 +11,8 @@ export class MockUserTaskDataProvider implements IUserTaskDataProvider {
 
   getUserCurrentTasks = reactiveFuncWrapper(()=>{
     const user = useUser()
-    return this.tasks.filter(t => t.status == 'IN_PROGRESS' && t.assignedToUserId == user.current.id)
+    return this.tasks.filter(t => t.status == 'IN_PROGRESS' &&
+                                  t.assignedToUserId == unref(user.current).id)
   })
 
   async approveTask(id: string): Promise<boolean> {
@@ -32,7 +33,7 @@ export class MockUserTaskDataProvider implements IUserTaskDataProvider {
     })
   }
 
-  getCount = computed(()=>this.getUserCurrentTasks().result.value.length)
+    getCount = computed(()=>this.getUserCurrentTasks().result.value.length)
 
   getUserCompletedTasks = reactiveFuncWrapper(()=>
     this.tasks.filter(t => t.status == 'APPROVED' || t.status == 'REJECTED')

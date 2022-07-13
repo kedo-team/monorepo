@@ -92,7 +92,6 @@ function registerWidget(domId: string) {
 
 // Adds a widget to collection and allow vue engine to rebuild DOM appropriately
 function addWidget(componentName: any, w?:number, h?:number, x?:number, y?:number) {
-  console.log('adding widget with component: ', componentName)
   const new_widget: IWidgetContainer = {
     id: uid(),
     component: defineAsyncComponent(()=>
