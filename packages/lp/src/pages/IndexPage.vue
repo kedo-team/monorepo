@@ -3,11 +3,11 @@ q-page
   .column
     .row.justify-center
       .col.block: BlockHero
-    .row.justify-center 
+    .row.justify-center
       .col.block: BlockReason
-    .row.justify-center 
+    .row.justify-center
       .col.block: BlockMainFeatures
-    //- .row.justify-center 
+    //- .row.justify-center
     //-   .col.block: BlockFAQ
 
 </template>
@@ -68,16 +68,7 @@ const metaData: MetaOptions = {
     ldJson: {
       type: 'application/ld+json',
       innerHTML: `{ '@context': 'http://schema.org' }`
-    },
-    jivo: {
-      src: '//code.jivo.ru/widget/AL5IrMvnvO',
-      async: true
-    },
-    ya_forms: {
-      src:  'https://yastatic.net/s3/frontend/forms/_/embed.js',
-      defer: true
     }
-
   },
 
   // <html> attributes
@@ -95,18 +86,18 @@ const metaData: MetaOptions = {
   // <noscript> tags
   // noscript: {
   //   default: 'This is content for browsers with no JS (or disabled JS)'
-  // }  
+  // }
 }
 
 function get_favicons(): MetaOptions['link'] {
-  
+
   const val: MetaOptions['link'] = {
-    favicon: { 
+    favicon: {
       rel: 'icon',
       type: 'image/ico',
       href: '/icons/favicon.ico' }
   }
-  
+
   new Array<number>(128, 96, 32, 16).forEach(el => {
     val[`favicon_${el}`] = {
          rel: 'icon',
@@ -117,7 +108,7 @@ function get_favicons(): MetaOptions['link'] {
   })
 
   return val;
-  
+
 }
 
 useMeta(metaData)

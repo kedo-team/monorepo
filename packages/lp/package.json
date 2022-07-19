@@ -14,7 +14,9 @@
     "remote:publish": "scp -r ./dist/ssr/* lp_host:~/ROOT",
     "remote:stop": "ssh lp_host \"pm2 stop kedo-team;\"",
     "remote:start": "ssh lp_host \"cd ~/ROOT; yarn; pm2 start --name kedo-team ~/ROOT/index.js;\"",
-    "remote:clean": "ssh lp_host \"rm -rdf ~/ROOT/*\""
+    "remote:clean": "ssh lp_host \"rm -rdf ~/ROOT/*\"",
+    "remote:restart": "yarn remote:stop && yarn remote:start",
+    "build_publish": "yarn build && yarn remote:publish && yarn remote:restart"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

@@ -57,34 +57,34 @@ import EssentialLink from 'components/EssentialLink.vue'
 import BlockFooter from './../pages/components/BlockFooter.vue'
 
 const linksList = [
-  {
-    title: 'для HRD',
-    icon: 'school',
-    caption: 'КЭДО директору по персоналу',
-    link: '/kedo-4-hrd'
-  },
-  {
-    title: 'для CEO',
-    icon: 'chat',
-    caption: 'КЭДО Генеральному директору',
-    link: '/kedo-4-ceo'
-  },
-  {
-    title: 'для CTO',
-    icon: 'code',
-    caption: 'КЭДО для ИТ-Директора ',
-    link: '/kedo-4-cto'
-  },
+  // {
+  //   title: 'для HRD',
+  //   icon: 'school',
+  //   caption: 'КЭДО директору по персоналу',
+  //   link: '/kedo-4-hrd'
+  // },
+  // {
+  //   title: 'для CEO',
+  //   icon: 'chat',
+  //   caption: 'КЭДО Генеральному директору',
+  //   link: '/kedo-4-ceo'
+  // },
+  // {
+  //   title: 'для CTO',
+  //   icon: 'code',
+  //   caption: 'КЭДО для ИТ-Директора ',
+  //   link: '/kedo-4-cto'
+  // },
   // {
   //   title: 'Блог',
   //   icon: 'rss_feed',
   //   link: 'https://twitter.quasar.dev'
   // },
-  {
-    title: 'О нас / Контакты',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  }
+  // {
+  //   title: 'О нас / Контакты',
+  //   icon: 'public',
+  //   link: 'https://facebook.quasar.dev'
+  // }
 ];
 
 const leftDrawerOpen = ref(false)
