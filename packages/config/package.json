@@ -1,0 +1,9 @@
+{
+  "name": "@kedo-team/config",
+  "packageManager": "yarn@3.2.1",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --build "
+  }
+}

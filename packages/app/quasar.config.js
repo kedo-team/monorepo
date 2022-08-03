@@ -35,6 +35,7 @@ module.exports = configure(function (/* ctx */) {
       'i18n',
       'apollo',
       'global-components',
+      'onboarding'
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css

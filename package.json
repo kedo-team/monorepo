@@ -14,6 +14,7 @@
     "api": "yarn workspace @kedo-team/api",
     "data": "yarn workspace @kedo-team/data-model",
     "lp": "yarn workspace @kedo-team/qlp",
+    "cfg": "yarn workspace @kedo-team/config",
     "icon:build": "yarn lp icongenie generate --profile icongenie-cfg.json"
   }
 }

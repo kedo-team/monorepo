@@ -904,26 +904,26 @@ const data: IUserViewModel[] = [
   {
     "role": 'app_head',
     "avatarUrl": "https://cdn.quasar.dev/img/avatar2.jpg",
-    "email": "lera@kedo-team.ru",
-    "firstName": "Лера",
+    "email": "o.sitnikova@kedo-team.ru",
+    "firstName": "Ольга",
     "id": "ce2d1e62-a324-4a8f-bc03-a9ee14f652b3",
-    "lastName": "Толкачева",
-    "phone": "+7 (926) 168-46-65"
+    "lastName": "Ситникова",
+    "phone": "+7 (924) 395-12-83"
   },
   {
     "role": 'app_user',
     "avatarUrl": "https://cdn.quasar.dev/img/avatar6.jpg",
-    "email": "anya@kedo-team.ru",
-    "firstName": "Аня",
+    "email": "p.ushakova@kedo-team.ru",
+    "firstName": "Полина",
     "id": "97ee528f-812f-4f2a-a52b-64c278398871",
-    "lastName": "Смирнова",
-    "phone": "+7 (953) 783-79-17"
+    "lastName": "Ушакова",
+    "phone": "+7 (921) 947-20-47"
   }
 ]
 
 const user1 = data.find(u => u.email=='anton@kedo-team.ru')
-const user2 = data.find(u => u.email=='lera@kedo-team.ru')
-const user3 = data.find(u => u.email=='anya@kedo-team.ru')
+const user2 = data.find(u => u.email=='o.sitnikova@kedo-team.ru')
+const user3 = data.find(u => u.email=='p.ushakova@kedo-team.ru')
 
 export default data
 export { user1, user2, user3 }

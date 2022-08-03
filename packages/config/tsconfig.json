@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "resolveJsonModule": true,
+  },
+  "files": [
+      "./kedo-team.config.json"
+  ]
+}

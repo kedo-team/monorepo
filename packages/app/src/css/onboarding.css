@@ -1,0 +1,14 @@
+.kt-onboarding-welcome-step {
+  min-width: 500px;
+  min-height: 500px;
+}
+
+#kt-center-point {
+  min-width: 1px;
+  min-height: 1px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}

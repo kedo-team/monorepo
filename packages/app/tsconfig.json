@@ -44,7 +44,8 @@
     }
   },
   "references": [
-    { "path": "../data-model" }
+    { "path": "../data-model" },
+    { "path": "../config" }
   ],
   "include": [
     "src/**/*.ts",

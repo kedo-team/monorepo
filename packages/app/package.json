@@ -17,10 +17,12 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.4",
+    "@kedo-team/config": "workspace:^",
     "@kedo-team/data-model": "workspace:^",
     "@quasar/extras": "^1.0.0",
     "@vue/apollo-composable": "^4.0.0-alpha.17",
     "cytoscape": "^3.21.1",
+    "driver.js": "^0.9.8",
     "frappe-gantt": "^0.6.1",
     "graphql": "^16.5.0",
     "graphql-tag": "^2.12.6",

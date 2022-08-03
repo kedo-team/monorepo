@@ -22,4 +22,6 @@ node_modules
 **/public/samples
 /packages/data-model/*.js
 /packages/data-model/*.d.ts
+/packages/config/*.js
+/packages/config/*.d.ts
 **/*.tsbuildinfo

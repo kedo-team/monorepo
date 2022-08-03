@@ -20,7 +20,7 @@ q-slide-transition
         q-icon(name='info')
         span Чтобы удалить виджет с рабочего стола перетащите его обратно в галлерею
 .row(v-if='!_user.isLayoutInEditMode').justify-end
-  q-btn(@click='_user.isLayoutInEditMode = true'
+  q-btn#kt-setup-dashboard-btn(@click='_user.isLayoutInEditMode = true'
   flat) редактировать
 section.grid-stack
   WidgetComponent(v-for="widget in widgets",

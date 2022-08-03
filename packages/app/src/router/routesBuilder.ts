@@ -8,6 +8,7 @@ async function buildRoutes() {
       component: () => import('src/pages/BasePage.vue'),
       children: [{
         path: '',
+        name: 'root',
         component: () => import('src/pages/DashboardViewPage.vue'),
         children: []
       }]

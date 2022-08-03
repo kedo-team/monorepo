@@ -1,7 +1,11 @@
 {
+  "compilerOptions": {
+    "declarationMap": true
+  },
   "references": [
     { "path": "./packages/app" },
     { "path": "./packages/api" },
-    { "path": "./packages/data-model" }
+    { "path": "./packages/data-model" },
+    { "path": "./packages/config" }
   ]
 }
