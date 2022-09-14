@@ -33,7 +33,7 @@ const metaData: MetaOptions = {
 
   // meta tags
   meta: {
-    description: { name: 'description', content: 'Page 1' },
+    description: { name: 'description', content: 'Электронный кадровый документооборот с возможностью интегрирования в корпоративные системы' },
     keywords: { name: 'keywords', content: 'КЭДО, ЭКДО, автоматизация кадров' },
     equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' },
     // note: for Open Graph type metadata you will need to use SSR, to ensure page is rendered by the server

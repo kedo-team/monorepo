@@ -11,7 +11,7 @@ q-dialog(v-model='modelValue'
     q-card-section.column
       .col Маршрут согласования:
       .col
-        .row.justify-center.flex-center
+        .row.justify-center.flex-center(v-if='approvementRoute')
           .col-auto
             q-icon(name='start')
           template(v-for='(user, index) in approvementRoute')
@@ -21,6 +21,7 @@ q-dialog(v-model='modelValue'
               q-icon(name='arrow_right_alt')
           .col-auto.text-center
             q-icon(name='keyboard_tab')
+        .row.justify-center.flex-center(v-else) Не требует согласований
 
     q-card-actions(align='right')
       q-btn(outline label='Отменить' color='red' @click='cancel')

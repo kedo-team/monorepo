@@ -32,7 +32,7 @@ export class MockRequestDataProvider implements IRequestDataProvider {
     console.log('currentEmail', currentEmail)
     switch(currentEmail) {
       case user2.email: return [user1]
-      case user1.email: return []
+      case user1.email: return null
       default: return [user2, user1]
     }
   }

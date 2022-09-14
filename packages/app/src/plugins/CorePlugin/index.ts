@@ -25,6 +25,17 @@ const routes: IRouteRecord[] = [{
             role: 'app_user',
             isRequest: true
         }
+    },
+    {
+        path: 'custom-request',
+        component: () => import('./pages/CustomRequestPage.vue'),
+        meta: {
+            title: 'Заявка в свободной форме',
+            description: 'Вы можете отправить заявку в свободной форме в кадровую службу',
+            icon: 'stars',
+            role: 'app_user',
+            isRequest: true
+        }
     }
 ]
 

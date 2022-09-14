@@ -12,7 +12,19 @@ const routes: IRouteRecord[] = [{
         icon: 'self_improvement',
         role: 'app_admin'
     }
-}]
+},
+{
+    path: '/approvement-stats',
+    component: () => import('./pages/ApprovementStatsPage.vue'),
+    meta: {
+        title: 'Статистика согласований',
+        description: 'Позволяет контролировать своевременное подписание сотрудниками направленных им документов',
+        icon: 'self_improvement',
+        role: 'app_admin'
+    }
+},
+
+]
 
 export {
     name,
